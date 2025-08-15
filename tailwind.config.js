@@ -21,7 +21,8 @@ const config = {
       dark: {
         colors: {
           primary: "#1e1e2f",
-          buttonText: "#97c0db"
+          buttonText: "#97c0db",
+          navbar: "#1B1E2B"
         }
       }
     },
