@@ -16,7 +16,17 @@ const config = {
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [heroui({
+    themes: {
+      dark: {
+        colors: {
+          primary: "#1e1e2f",
+          buttonText: "#97c0db"
+        }
+      }
+    },
+    prefix: "myportfolio"
+  })],
 }
 
 module.exports = config;
