@@ -6,8 +6,14 @@ export default function Home() {
       <div className="rounded-full h-12 bg-gray-200 my-4 mx-25">
         <div className="relative left-20">navbar</div>
       </div>
-      <div className="rounded-xl h-120 bg-gray-200 my-4 mx-12 inline bg-[url('/img/free-nature-images.jpg')]">
-        <div>Hello, my name is Trung and I build well-designed applications for the web</div>
+      <div
+        className="rounded-xl h-120 my-4 mx-12 inline grid bg-[url('/img/meshImageFrame.png')] bg-bottom bg-cover"
+      >
+        <div className="flex items-center justify-center h-full w-full">
+          <div className="text-white font-[sans] inline-block px-8 py-4 text-2xl font-bold">
+            Hello, my name is Trung and I build well-designed applications for the web
+          </div>
+        </div>
       </div>
       {/* 
       <div className="text-black w-"></div>
