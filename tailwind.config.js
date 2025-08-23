@@ -1,6 +1,6 @@
-import {heroui} from "@heroui/theme"
-
 /** @type {import('tailwindcss').Config} */
+
+
 const config = {
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,24 +10,14 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
+        appleFont: [
+          'Montserrat',
+        ],
       },
     },
   },
   darkMode: "class",
-  plugins: [heroui({
-    themes: {
-      dark: {
-        colors: {
-          primary: "#1e1e2f",
-          buttonText: "#97c0db",
-          navbar: "#1B1E2B"
-        }
-      }
-    },
-    prefix: "myportfolio"
-  })],
+  plugins: [],
 }
 
 module.exports = config;
