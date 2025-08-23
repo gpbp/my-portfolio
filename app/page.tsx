@@ -1,11 +1,6 @@
-import {Button} from "@heroui/button";
-
 export default function Home() {
   return (
     <div className="m-0 p-0 flex flex-col gap-y-2">
-      <div className="rounded-full h-12 bg-white my-4 mx-25 shadow-lg sticky">
-        <div className="font-appleFont font-bold">navbar</div>
-      </div>
       <div
         className="rounded-xl h-120 my-4 mx-12 inline grid bg-[url('/img/meshImageFrame.png')] bg-bottom bg-cover"
       >
