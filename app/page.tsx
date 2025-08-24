@@ -1,10 +1,11 @@
 import AboutMe from "@/components/about-me";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-} from "@/components/icons"
 import MyExperiences from "@/components/my-experiences";
+
+const introduction = 
+`Welcome to my digital space! My name is Trung
+and I love turning ideas into code, challenges into solutions, 
+and visions into reality.`;
+
 
 export default function Home(): JSX.Element {
   return (
@@ -14,7 +15,7 @@ export default function Home(): JSX.Element {
       >
         <div className="flex items-center justify-center h-full w-full">
           <div className="text-white font-appleFont inline-block px-8 py-4 text-2xl font-bold">
-            Hello, my name is Trung and I build well-designed applications for the web
+            {introduction}
           </div>
         </div>
       </div>
