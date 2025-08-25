@@ -8,6 +8,7 @@ type Project = {
     imageUrl?: string;
     projectUrl?: string;
     className?: string;
+    finished?: boolean;
 };
 
 const projects: Project[] = [
@@ -16,9 +17,10 @@ const projects: Project[] = [
         name: "Portfolio Website",
         description: "A personal portfolio website to showcase my projects and experiences.",
         techStack: ["React", "TypeScript", "Tailwind CSS"],
-        imageUrl: "/img/portfolio.jpg",
+        imageUrl: "/img/meshImageFrame.jpg",
         projectUrl: "https://your-portfolio.com",
-        className: "rounded-xl flex-1/3 h-80 mr-4 p-4 bg-gray-200"
+        className: "rounded-xl flex-1/3 mr-4 h-100 text-white font-bold p-4 bg-[url(/img/meshImageFrame.png)] bg-cover bg-center shadow-xs shadow-gray-200 hover:shadow-md hover:shadow-gray-500 hover:cursor-pointer ease-in-out duration-500",
+        finished: true
     },
     {
         id: 2,
@@ -27,21 +29,23 @@ const projects: Project[] = [
         techStack: ["Next.js", "Node.js", "MongoDB"],
         imageUrl: "/img/taskmanager.jpg",
         projectUrl: "https://your-taskmanager.com",
-        className: "rounded-xl flex-1/3 h-80 mr-4 p-4 bg-gray-200"
+        className: "rounded-xl flex-1/3 mr-4 h-100 font-bold p-4 bg-[url(/img/taskManagement.png)] bg-cover bg-start shadow-xs shadow-gray-200 hover:shadow-md hover:shadow-gray-500 hover:cursor-pointer ease-in-out duration-500",
+        finished: false
     },
     {
         id: 3,
-        name: "E-commerce Platform",
-        description: "A scalable e-commerce platform with payment integration.",
+        name: "Food ideas",
+        description: "A platform to explore and share food recipes.",
         techStack: ["React", "Redux", "Express"],
         imageUrl: "/img/ecommerce.jpg",
         projectUrl: "https://your-ecommerce.com",
-        className: "rounded-xl flex-1/3 h-80 mr-4 p-4 bg-gray-200"
+        className: "rounded-xl flex-1/3 mr-4 h-100 text-white font-bold p-4 bg-[url(/img/foodIdeas.jpg)] bg-cover bg-start shadow-xs shadow-gray-200 hover:shadow-md hover:shadow-gray-500 hover:cursor-pointer ease-in-out duration-500",
+        finished: false
     }
 ];
 
 const myProjectsIntroduction =
-    `Every project is a new adventure in learning and building. Here are some of the works I'm proud of.`;
+    `Here are a selection of my projects. Each one is a blend  of clean code, creative design, and practical problem-solving.`;
 
 export default function MyProjects(): JSX.Element {
     return (

@@ -26,22 +26,22 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="center">
         <ul className="flex flex-row gap-x-4 p-2 justify-center">
         <li>
-          <Button radius="full" className="font-appleFont text-sm">
+          <Button radius="full" className="font-appleFont text-sm font-bold">
           About me
           </Button>
         </li>
         <li>
-          <Button radius="full" className="font-appleFont  text-sm">
+          <Button radius="full" className="font-appleFont  text-sm font-bold">
           My Experiences
           </Button>
         </li>
         <li>
-          <Button radius="full" className="font-appleFont text-sm">
+          <Button radius="full" className="font-appleFont text-sm font-bold">
           Download my CV
           </Button>
         </li>
         <li>
-          <Button radius="full" className="font-appleFont text-sm">
+          <Button radius="full" className="font-appleFont text-sm font-bold">
           Contact me
           </Button>
         </li>
