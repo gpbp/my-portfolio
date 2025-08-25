@@ -3,7 +3,7 @@ import { DiscordIcon, GithubIcon, TwitterIcon } from "./icons";
 
 export default function AboutMe(): JSX.Element {
     return (
-    <div className="my-4 flex gap-x-2 h-80">
+    <div className="my-4 flex gap-x-2">
         <div className="mr-4 flex-1/3 flex flex-col gap-y-2 items-center bg-white shadow-lg rounded-xl">
             <div className="mb-4 flex items-center justify-center inline-block">
                 <img

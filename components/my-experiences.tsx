@@ -6,29 +6,36 @@ type Experience = {
   company: string;
   duration: string;
   description: string;
+  imageUrl?: string;
+  className?: string;
 };
 
 const experiences: Experience[] = [
   {
     id: 1,
-    title: "Software Engineer",
-    company: "ABC Corp",
-    duration: "Jan 2020 - Present",
-    description: "Developing web applications using React and Node.js."
+    title: "Full-stack Developer",
+    company: "Capgemini",
+    duration: "May 2023 - Present",
+    description: "Developing web applications using React and Node.js.",
+    imageUrl: "",
+    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/cacibSQY.jpg)] bg-cover bg-center"
   },
   {
     id: 2,
-    title: "Frontend Developer",
-    company: "XYZ Inc",
-    duration: "Jun 2018 - Dec 2019",
-    description: "Implemented responsive designs using HTML, CSS, and JavaScript."
+    title: "Full-stack Developer",
+    company: "Capgemini",
+    duration: "March 2021 - December 2022",
+    description: "Implemented responsive designs using HTML, CSS, and JavaScript.",
+    imageUrl: "/img/capgeminiBrest.jpg",
+    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/capgeminiBrest.jpg)] bg-cover bg-center"
   },
   {
     id: 3,
-    title: "Backend Developer",
-    company: "LMN Ltd",
-    duration: "Jan 2017 - May 2018",
-    description: "Worked on RESTful APIs using Node.js and Express."
+    title: "Full-stack Developer",
+    company: "Famoco",
+    duration: "March 2020 - September 2020",
+    description: "Worked on RESTful APIs using Node.js and Express.",
+    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/famoco.png)] bg-cover bg-center"
   }
 ];
 
@@ -38,15 +45,18 @@ challenge is growth. These are the experiences that define my path.`;
 
 export default function MyExperiences(): JSX.Element {
   return (
-	<div className="my-4 flex flex-col gap-y-2 h-8">
-	  <h2 className="text-5xl font-bold">{myExperiencesIntroduction}</h2>
-	  <div className="flex gap-x-2">
+	<div className="my-4 flex flex-col gap-y-2">
+	  <h2 className="text-4xl font-bold mb-4 font-appleFont">{myExperiencesIntroduction}</h2>
+	  <div className="flex gap-x-2 mt-4 bg-gray-100">
         {experiences.map((exp) => (
-            <div key={exp.id} className="rounded-xl bg-gray-200 h-100 flex-1/3 mr-4">
-                <h3>{exp.title}</h3>
-                <p>{exp.company}</p>
-                <p>{exp.duration}</p>
-                <p>{exp.description}</p>
+            <div
+              key={exp.id}
+              className={exp.className}
+            >
+              <h3>{exp.title}</h3>
+              <p>{exp.company}</p>
+              <p>{exp.duration}</p>
+              <p>{exp.description}</p>
             </div>
 		    ))}
       </div>
