@@ -18,7 +18,7 @@ const experiences: Experience[] = [
     duration: "May 2023 - Present",
     description: "Developing web applications using React and Node.js.",
     imageUrl: "",
-    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/cacibSQY.jpg)] bg-cover bg-center"
+    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/cacibSQY.jpg)] bg-cover bg-center text-white font-bold"
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const experiences: Experience[] = [
     duration: "March 2021 - December 2022",
     description: "Implemented responsive designs using HTML, CSS, and JavaScript.",
     imageUrl: "/img/capgeminiBrest.jpg",
-    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/capgeminiBrest.jpg)] bg-cover bg-center"
+    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/capgeminiBrest.jpg)] bg-cover bg-center text-white font-bold"
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const experiences: Experience[] = [
     company: "Famoco",
     duration: "March 2020 - September 2020",
     description: "Worked on RESTful APIs using Node.js and Express.",
-    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/famoco.png)] bg-cover bg-center"
+    className: "rounded-xl flex-1/3 h-100 mr-4 p-4 bg-[url(/img/famoco.png)] bg-cover bg-center text-white font-bold"
   }
 ];
 
@@ -56,7 +56,6 @@ export default function MyExperiences(): JSX.Element {
               <h3>{exp.title}</h3>
               <p>{exp.company}</p>
               <p>{exp.duration}</p>
-              <p>{exp.description}</p>
             </div>
 		    ))}
       </div>

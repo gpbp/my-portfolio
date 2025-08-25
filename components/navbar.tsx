@@ -21,10 +21,9 @@ export const Navbar = () => {
   return (
     <div className="flex justify-center w-full">
       <HeroUINavbar
-      position="sticky"
-      className="rounded-full h-12 bg-white my-4 mx-100 shadow-lg"
+      className="rounded-full h-12 bg-white my-4 mx-100 shadow-lg items-center"
       >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent className="basis-1/5 sm:basis-full" justify="center">
         <ul className="flex flex-row gap-x-4 p-2 justify-center">
         <li>
           <Button radius="full" className="font-appleFont text-sm">
@@ -38,7 +37,7 @@ export const Navbar = () => {
         </li>
         <li>
           <Button radius="full" className="font-appleFont text-sm">
-          My Projects
+          Download my CV
           </Button>
         </li>
         <li>
