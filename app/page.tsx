@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
         className="rounded-xl h-120 my-4 inline grid bg-[url('/img/meshImageFrame.png')] bg-bottom bg-cover"
       >
         <div className="flex items-center justify-center h-full w-full">
-          <div className="text-white font-appleFont inline-block px-8 py-4 text-2xl font-bold">
+          <div className="text-white font-appleFont inline-block px-8 py-4 text-6xl font-bold">
             {introduction}
           </div>
         </div>

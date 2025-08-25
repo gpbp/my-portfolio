@@ -39,7 +39,7 @@ challenge is growth. These are the experiences that define my path.`;
 export default function MyExperiences(): JSX.Element {
   return (
 	<div className="my-4 flex flex-col gap-y-2 h-8">
-	  <h2 className="">{myExperiencesIntroduction}</h2>
+	  <h2 className="text-5xl font-bold">{myExperiencesIntroduction}</h2>
 	  <div className="flex gap-x-2">
         {experiences.map((exp) => (
             <div key={exp.id} className="rounded-xl bg-gray-200 h-100 flex-1/3 mr-4">
