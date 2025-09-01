@@ -1,24 +1,12 @@
 import AboutMe from "@/components/about-me";
+import Introduction from "@/components/introduction/introduction";
 import MyExperiences from "@/components/my-experiences";
-import MyProjects from "@/components/my-projects";
-
-const introduction = 
-`Welcome to my digital space! My name is Trung
-and I'm a full-stack developer`;
+import MyProjects from "@/components/my-projects/my-projects";
 
 export default function Home(): JSX.Element {
   return (
-    <div className="m-0 p-0 flex flex-col gap-y-2 mx-12">
-      <div
-        className="rounded-xl h-120 my-4 inline grid bg-[url(/img/meshImageFrame.png)] bg-bottom bg-cover"
-      >
-        <div className="flex items-center justify-center h-full w-full">
-          <div className="text-white font-appleFont inline-block px-8 py-4 text-6xl font-bold">
-            {introduction}
-          </div>
-        </div>
-      </div>
-      
+    <div className="flex flex-col gap-y-4">
+      <Introduction />
       <AboutMe />
       <MyExperiences />
       <MyProjects />

@@ -1,4 +1,8 @@
 import React from "react";
+import {Card, CardBody} from "@heroui/card";
+import {Avatar} from "@heroui/avatar";
+import { Envelope, Followers, MapPin } from "../icons";
+import styles from "./my-project.module.css";
 
 type Project = {
     id: number;

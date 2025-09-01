@@ -1,23 +1,22 @@
+const { heroui } = require("@heroui/theme");
 /** @type {import('tailwindcss').Config} */
-
 
 const config = {
   content: [
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        appleFont: [
-          'Montserrat',
-        ],
+        appleFont: ["Montserrat"],
+        robotoMono: ["var(--font-roboto-mono)"],
       },
     },
   },
   darkMode: "class",
-  plugins: [],
-}
+  plugins: [heroui()],
+};
 
 module.exports = config;
