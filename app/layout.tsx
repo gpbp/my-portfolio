@@ -8,12 +8,18 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Roboto_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 export const robotoMonoFont = Roboto_Mono({
   subsets: ["latin"],
   variable: "--font-roboto-mono",
   weight: ["400", "700"],
 });
+
+export const helveticaBold = localFont({
+  src: "../public/fonts/Helvetica-Bold.ttf",
+  variable: "--font-helvetica-bold",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -59,3 +65,4 @@ export default function RootLayout({
     </html>
   );
 }
+

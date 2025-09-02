@@ -12,6 +12,7 @@ const config = {
       fontFamily: {
         appleFont: ["Montserrat"],
         robotoMono: ["var(--font-roboto-mono)"],
+        helvetica: ["var(--font-helvetica-bold)"],
       },
     },
   },

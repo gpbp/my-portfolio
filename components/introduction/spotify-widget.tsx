@@ -4,6 +4,7 @@ import {Image} from "@heroui/image";
 import {Button} from "@heroui/button";
 import {Slider} from "@heroui/slider";
 import styles from "./introduction.module.css";
+import { SpotifyIcon } from "../icons";
 
 
 export const HeartIcon = ({
@@ -36,7 +37,7 @@ export const HeartIcon = ({
   );
 };
 
-export const PauseCircleIcon = ({size = 24, width = undefined, height = undefined, ...props}) => {
+export const PauseCircleIcon = ({size = 40, width = undefined, height = undefined, ...props}) => {
   return (
     <svg
       aria-hidden="true"
@@ -50,13 +51,13 @@ export const PauseCircleIcon = ({size = 24, width = undefined, height = undefine
     >
       <path
         d="M11.9688 2C6.44875 2 1.96875 6.48 1.96875 12C1.96875 17.52 6.44875 22 11.9688 22C17.4888 22 21.9688 17.52 21.9688 12C21.9688 6.48 17.4988 2 11.9688 2ZM10.7188 15.03C10.7188 15.51 10.5188 15.7 10.0087 15.7H8.70875C8.19875 15.7 7.99875 15.51 7.99875 15.03V8.97C7.99875 8.49 8.19875 8.3 8.70875 8.3H9.99875C10.5087 8.3 10.7087 8.49 10.7087 8.97V15.03H10.7188ZM15.9987 15.03C15.9987 15.51 15.7987 15.7 15.2887 15.7H13.9987C13.4887 15.7 13.2887 15.51 13.2887 15.03V8.97C13.2887 8.49 13.4887 8.3 13.9987 8.3H15.2887C15.7987 8.3 15.9987 8.49 15.9987 8.97V15.03Z"
-        fill="currentColor"
+        fill="white"
       />
     </svg>
   );
 };
 
-export const NextIcon = ({size = 24, width = undefined, height = undefined, ...props}) => {
+export const NextIcon = ({size = 40, width = undefined, height = undefined, ...props}) => {
   return (
     <svg
       aria-hidden="true"
@@ -70,21 +71,21 @@ export const NextIcon = ({size = 24, width = undefined, height = undefined, ...p
     >
       <path
         d="M3.76172 7.21957V16.7896C3.76172 18.7496 5.89172 19.9796 7.59172 18.9996L11.7417 16.6096L15.8917 14.2096C17.5917 13.2296 17.5917 10.7796 15.8917 9.79957L11.7417 7.39957L7.59172 5.00957C5.89172 4.02957 3.76172 5.24957 3.76172 7.21957Z"
-        fill="currentColor"
+        fill="white"
       />
       <path
         d="M20.2383 18.9303C19.8283 18.9303 19.4883 18.5903 19.4883 18.1803V5.82031C19.4883 5.41031 19.8283 5.07031 20.2383 5.07031C20.6483 5.07031 20.9883 5.41031 20.9883 5.82031V18.1803C20.9883 18.5903 20.6583 18.9303 20.2383 18.9303Z"
-        fill="currentColor"
+        fill="white"
       />
     </svg>
   );
 };
 
-export const PreviousIcon = ({size = 24, width = undefined, height = undefined, ...props}) => {
+export const PreviousIcon = ({size = 40, width = undefined, height = undefined, ...props}) => {
   return (
     <svg
       aria-hidden="true"
-      fill="none"
+      fill="black"
       focusable="false"
       height={size || height}
       role="presentation"
@@ -94,11 +95,11 @@ export const PreviousIcon = ({size = 24, width = undefined, height = undefined, 
     >
       <path
         d="M20.2409 7.21957V16.7896C20.2409 18.7496 18.1109 19.9796 16.4109 18.9996L12.2609 16.6096L8.11094 14.2096C6.41094 13.2296 6.41094 10.7796 8.11094 9.79957L12.2609 7.39957L16.4109 5.00957C18.1109 4.02957 20.2409 5.24957 20.2409 7.21957Z"
-        fill="currentColor"
+        fill="white"
       />
       <path
         d="M3.76172 18.9303C3.35172 18.9303 3.01172 18.5903 3.01172 18.1803V5.82031C3.01172 5.41031 3.35172 5.07031 3.76172 5.07031C4.17172 5.07031 4.51172 5.41031 4.51172 5.82031V18.1803C4.51172 18.5903 4.17172 18.9303 3.76172 18.9303Z"
-        fill="currentColor"
+        fill="white"
       />
     </svg>
   );
@@ -165,106 +166,18 @@ export default function SpotifyWidget() {
   function setLiked(): void { liked = !liked}
 
   return (
-    <Card
-      isBlurred
-      className={`${styles.animation} border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]`}
-      shadow="sm"
-    >
-      <CardBody>
-        <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
-          <div className="relative col-span-6 md:col-span-4">
-            <Image
-              alt="Album cover"
-              className="object-cover"
-              height={200}
-              shadow="md"
-              src="https://heroui.com/images/album-cover.png"
-              width="100%"
-            />
-          </div>
-
-          <div className="flex flex-col col-span-6 md:col-span-8">
-            <div className="flex justify-between items-start">
-              <div className="flex flex-col gap-0">
-                <h3 className="font-semibold text-foreground/90">Daily Mix</h3>
-                <p className="text-small text-foreground/80">12 Tracks</p>
-                <h1 className="text-large font-medium mt-2">Frontend Radio</h1>
-              </div>
-              <Button
-                isIconOnly
-                className="text-default-900/60 data-hover:bg-foreground/10! -translate-y-2 translate-x-2"
-                radius="full"
-                variant="light"
-              >
-                <HeartIcon
-                                  className={liked ? "[&>path]:stroke-transparent" : ""}
-                                  fill={liked ? "currentColor" : "none"} width={undefined} height={undefined}                />
-              </Button>
-            </div>
-
-            <div className="flex flex-col mt-3 gap-1">
-              <Slider
-                aria-label="Music progress"
-                classNames={{
-                  track: "bg-default-500/30",
-                  thumb: "w-2 h-2 after:w-2 after:h-2 after:bg-foreground",
-                }}
-                color="foreground"
-                defaultValue={33}
-                size="sm"
-              />
-              <div className="flex justify-between">
-                <p className="text-small">1:23</p>
-                <p className="text-small text-foreground/50">4:32</p>
-              </div>
-            </div>
-
-            <div className="flex w-full items-center justify-center">
-              <Button
-                isIconOnly
-                className="data-hover:bg-foreground/10!"
-                radius="full"
-                variant="light"
-              >
-                <RepeatOneIcon className="text-foreground/80" width={undefined} height={undefined} />
-              </Button>
-              <Button
-                isIconOnly
-                className="data-hover:bg-foreground/10!"
-                radius="full"
-                variant="light"
-              >
-                <PreviousIcon width={undefined} height={undefined} />
-              </Button>
-              <Button
-                isIconOnly
-                className="w-auto h-auto data-hover:bg-foreground/10!"
-                radius="full"
-                variant="light"
-              >
-                <PauseCircleIcon size={54} width={undefined} height={undefined} />
-              </Button>
-              <Button
-                isIconOnly
-                className="data-hover:bg-foreground/10!"
-                radius="full"
-                variant="light"
-              >
-                <NextIcon width={undefined} height={undefined} />
-              </Button>
-              <Button
-                isIconOnly
-                className="data-hover:bg-foreground/10!"
-                radius="full"
-                variant="light"
-              >
-                <ShuffleIcon className="text-foreground/80" width={undefined} height={undefined} />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CardBody>
-    </Card>
+    <div className={`${styles.animation}  border-none rounded-lg bg-[url(/img/abbeyRoad.jpg)] bg-cover bg-no-repeat w-50 h-50`}>
+      <div className="absolute bg-linear-to-t from-gray-900 to-gray-100 top-0 left-0 rounded-lg w-50 h-50 opacity-30"></div>
+      <div className="absolute bottom-3 left-0 grid grid-cols-3 gap-1 px-2 w-full place-items-center">
+        <PreviousIcon className="p-1" />
+        <PauseCircleIcon className="p-1" />
+        <NextIcon className="p-1" />
+      </div>
+      <div className="absolute top-1 left-0 p-2 text-white font-helvetica-bold">The Beatles</div>
+      <div className="absolute top-7 left-0 p-2 text-white font-helvetica-bold font-bold text-sm">Abbey Road (Remastered)</div>
+    </div>
   );
 }
+
+
 
