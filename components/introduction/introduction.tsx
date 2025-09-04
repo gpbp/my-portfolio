@@ -3,6 +3,7 @@ import styles from "./introduction.module.css";
 import SpotifyWidget from "./spotify-widget";
 import {Button} from "@heroui/button";
 import { ArrowRight } from "../icons";
+import BitcoinWidget from "./BitcoinWidget";
 
 export default function Introduction(): JSX.Element {
   return (
@@ -24,7 +25,8 @@ export default function Introduction(): JSX.Element {
       </div>
       <div className="rounded-xl h-120 my-4 w-1/2 flex flex-row gap-x-4 items-center justify-center">
         <SpotifyWidget />
-        <Card className={`${styles.animation} py-4 bg-[#0d1117] w-1/5 cursor-pointer w-1/3 h-85`}>
+        <BitcoinWidget />
+        <Card className={`${styles.animation_12s} py-4 bg-[#0d1117] cursor-pointer w-1/3 h-85`}>
             <CardBody className="overflow-visible py-2">
                 <div className="flex flex-col w-full items-center mb-4">
                     <img

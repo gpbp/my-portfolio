@@ -168,7 +168,7 @@ export default function SpotifyWidget() {
   return (
     <div className={`${styles.animation}  border-none rounded-lg bg-[url(/img/abbeyRoad.jpg)] bg-cover bg-no-repeat w-50 h-50`}>
       <div className="absolute bg-linear-to-t from-gray-900 to-gray-100 top-0 left-0 rounded-lg w-50 h-50 opacity-30"></div>
-      <div className="absolute bottom-3 left-0 grid grid-cols-3 gap-1 px-2 w-full place-items-center">
+      <div className="absolute bottom-3 left-0 grid grid-cols-3 gap-1 px-2 w-full place-items-center rounded-lg">
         <PreviousIcon className="p-1" />
         <PauseCircleIcon className="p-1" />
         <NextIcon className="p-1" />
