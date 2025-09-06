@@ -1,10 +1,5 @@
 import React from "react";
-import {Card, CardBody} from "@heroui/card";
-import {Image} from "@heroui/image";
-import {Button} from "@heroui/button";
-import {Slider} from "@heroui/slider";
 import styles from "./introduction.module.css";
-import { SpotifyIcon } from "../icons";
 
 
 export const HeartIcon = ({
