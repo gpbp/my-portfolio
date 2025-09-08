@@ -5,7 +5,7 @@ export default function AboutMe(): JSX.Element {
     return (
     <div className="my-4 flex gap-x-2">
         <div className="mr-4 flex-1/3 flex flex-col gap-y-2 items-center bg-white rounded-xl">
-            <div className="mb-4 flex items-center justify-center inline-block">
+            <div className="mb-4 flex items-center justify-center">
                 <img
                     className="rounded-full w-40 h-40 object-cover object-center flex items-center justify-center"
                     src="/img/profileImage.jpg"

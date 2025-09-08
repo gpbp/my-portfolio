@@ -24,8 +24,10 @@ export default function Introduction(): JSX.Element {
         </div>
       </div>
       <div className="rounded-xl h-120 my-4 w-1/2 flex flex-row gap-x-4 items-center justify-center">
-        <SpotifyWidget />
-        <BitcoinWidget />
+        <div className="flex flex-col gap-y-4">
+          <SpotifyWidget />
+          <BitcoinWidget />
+        </div>
         <Card className={`${styles.animation_12s} py-4 bg-[#0d1117] cursor-pointer w-1/3 h-85`}>
             <CardBody className="overflow-visible py-2">
                 <div className="flex flex-col w-full items-center mb-4">
@@ -35,9 +37,9 @@ export default function Introduction(): JSX.Element {
                         alt="Profile Image"
                     />
                 </div>
-                <div className="text-white font-['Segoe UI'] font-bold text-xl">Pham Hai Trung</div>
-                <div className="font-['Segoe UI'] text-sm text-[#9198a1]">gpbp</div>
-                <div className="font-['Segoe UI'] text-sm text-white"> 💻 Full-Stack Developer | ☁️ Cloud Enthusiast | 🚀 Always learning </div>
+                <div className="text-white font-segoeUI font-bold text-xl">Pham Hai Trung</div>
+                <div className="font-segoeUI text-sm text-[#9198a1]">gpbp</div>
+                <div className="font-segoeUI text-sm text-white"> 💻 Full-Stack Developer | ☁️ Cloud Enthusiast | 🚀 Always learning </div>
             </CardBody>
         </Card>
       </div>

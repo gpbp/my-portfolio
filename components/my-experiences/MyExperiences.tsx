@@ -39,14 +39,14 @@ const experiences: Experience[] = [
   }
 ];
 
-const myExperiencesIntroduction = 
-`Behind every project is a lesson, and behind every
-challenge is growth. These are the experiences that define my path.`;
 
 export default function MyExperiences(): JSX.Element {
   return (
 	<div className="my-4 flex flex-col gap-y-2">
-	  <h2 className="text-4xl font-bold mb-4 font-appleFont">{myExperiencesIntroduction}</h2>
+    <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
+      Behind every project is a <p className="bg-gradient-to-t from-sky-400 via-violet-600 to-sky-900 inline-block text-transparent bg-clip-text">lesson</p>, and behind every
+challenge is <p className="bg-gradient-to-t from-sky-400 via-violet-600 to-sky-900 inline text-transparent bg-clip-text">growth</p>.
+    </div>
 	  <div className="flex gap-x-2 mt-4">
         {experiences.map((exp) => (
             <div

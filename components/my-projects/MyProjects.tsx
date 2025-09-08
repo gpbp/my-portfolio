@@ -48,13 +48,12 @@ const projects: Project[] = [
     }
 ];
 
-const myProjectsIntroduction =
-    `Here are a selection of my projects. Each one is a blend  of clean code, creative design, and practical problem-solving.`;
-
 export default function MyProjects(): JSX.Element {
     return (
         <div className="my-4 flex flex-col gap-y-2 h-200">
-            <h2 className="text-4xl font-bold mb-4 font-appleFont">{myProjectsIntroduction}</h2>
+            <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
+      a blend of <p className="bg-gradient-to-t from-sky-400 via-violet-600 to-sky-900 inline-block text-transparent bg-clip-text">clean code</p>, <p className="bg-gradient-to-t from-sky-400 via-violet-600 to-sky-900 inline text-transparent bg-clip-text">creative design</p>, and <p className="bg-gradient-to-t from-sky-400 via-violet-600 to-sky-900 inline text-transparent bg-clip-text">practical problem-solving</p>.
+            </div>
             <div className="flex gap-x-2 mt-4 bg-gray-100">
                 {projects.map((exp) => (
                     <div

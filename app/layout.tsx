@@ -21,6 +21,11 @@ export const helveticaBold = localFont({
   variable: "--font-helvetica-bold",
 })
 
+export const segoeUI = localFont({
+  src: "../public/fonts/segoeuithis.ttf",
+  variable: "--font-segoe-ui",
+})
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
