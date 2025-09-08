@@ -10,7 +10,6 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        appleFont: ["Montserrat"],
         robotoMono: ["var(--font-roboto-mono)"],
         helvetica: ["var(--font-helvetica-bold)"],
         segoeUI: ["var(--font-segoe-ui)"],
