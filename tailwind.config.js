@@ -1,4 +1,4 @@
-const { heroui } = require("@heroui/theme");
+const { heroui, colors } = require("@heroui/theme");
 /** @type {import('tailwindcss').Config} */
 
 const config = {
@@ -13,6 +13,9 @@ const config = {
         robotoMono: ["var(--font-roboto-mono)"],
         helvetica: ["var(--font-helvetica-bold)"],
         segoeUI: ["var(--font-segoe-ui)"],
+      },
+      colors: {
+        primary: '#006FEE',
       },
     },
   },

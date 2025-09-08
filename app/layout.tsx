@@ -5,26 +5,8 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontSans, helveticaBold, robotoMonoFont, segoeUI } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { Roboto_Mono } from "next/font/google";
-import localFont from "next/font/local";
-
-export const robotoMonoFont = Roboto_Mono({
-  subsets: ["latin"],
-  variable: "--font-roboto-mono",
-  weight: ["400", "700"],
-});
-
-export const helveticaBold = localFont({
-  src: "../public/fonts/Helvetica-Bold.ttf",
-  variable: "--font-helvetica-bold",
-})
-
-export const segoeUI = localFont({
-  src: "../public/fonts/segoeuithis.ttf",
-  variable: "--font-segoe-ui",
-})
 
 export const metadata: Metadata = {
   title: {
@@ -56,11 +38,10 @@ export default function RootLayout({
         className={`${clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
           fontSans.variable,
-        )} ${robotoMonoFont.variable}`}
+        )} ${robotoMonoFont.variable} ${helveticaBold.variable} ${segoeUI.variable}`}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
-            <Navbar />
             <main className="container mx-auto max-w-9xl flex-grow bg-white">
               {children}
             </main>
