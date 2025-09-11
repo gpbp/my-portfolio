@@ -1,0 +1,197 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Portfolio Dev Environment (simplified with CI/CD)
+
+Parameters:
+  GitHubOwner:
+    Type: String
+    Description: GitHub username or organization for the dev repo
+  GitHubRepo:
+    Type: String
+    Description: GitHub repo name
+  GitHubOAuthTokenSSMParameter:
+    Type: String
+    Description: Name of the SSM parameter storing GitHub personal access token
+
+Resources:
+
+  ################################################
+  # S3 Bucket for React App (public for dev)   #
+  ################################################
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-portfolio-dev-site
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      AccessControl: PublicRead
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject
+            Resource: !Sub ${SiteBucket.Arn}/*
+
+  ################################################
+  # DynamoDB Tables                              #
+  ################################################
+  ExperiencesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: my-portfolio-dev-experiences
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  ProjectsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: my-portfolio-dev-projects
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  ################################################
+  # API Gateway (basic)                          #
+  ################################################
+  PortfolioApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: PortfolioApi-dev
+
+  RootMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref PortfolioApi
+      ResourceId: !GetAtt PortfolioApi.RootResourceId
+      HttpMethod: GET
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+
+  PortfolioApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn: RootMethod
+    Properties:
+      RestApiId: !Ref PortfolioApi
+      StageName: dev
+
+  ################################################
+  # CI/CD Pipeline for React App                 #
+  ################################################
+  PipelineBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-portfolio-dev-pipeline-artifacts
+
+  CodePipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codepipeline.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
+        - arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+
+  ReactBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: portfolio-dev-react-build
+      ServiceRole: !GetAtt CodePipelineRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:6.0
+        Type: LINUX_CONTAINER
+      Source:
+        Type: CODEPIPELINE
+      Cache:
+        Type: NO_CACHE
+      TimeoutInMinutes: 30
+
+  PortfolioPipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      RoleArn: !GetAtt CodePipelineRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref PipelineBucket
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: GitHubSource
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Provider: GitHub
+                Version: '1'
+              OutputArtifacts:
+                - Name: SourceOutput
+              Configuration:
+                Owner: !Ref GitHubOwner
+                Repo: !Ref GitHubRepo
+                Branch: dev
+                OAuthToken: !Sub '{{resolve:ssm:${GitHubOAuthTokenSSMParameter}}}'
+        - Name: Build
+          Actions:
+            - Name: ReactBuild
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: '1'
+              InputArtifacts:
+                - Name: SourceOutput
+              OutputArtifacts:
+                - Name: BuildOutput
+              Configuration:
+                ProjectName: !Ref ReactBuildProject
+        - Name: Deploy
+          Actions:
+            - Name: DeployToS3
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: S3
+                Version: '1'
+              InputArtifacts:
+                - Name: BuildOutput
+              Configuration:
+                BucketName: !Ref SiteBucket
+                Extract: true
+
+Outputs:
+  WebsiteURL:
+    Description: Public URL of the dev S3-hosted React app
+    Value: !GetAtt SiteBucket.WebsiteURL
+
+  ApiUrl:
+    Description: Dev API Gateway endpoint
+    Value: !Sub https://${PortfolioApi}.execute-api.${AWS::Region}.amazonaws.com/dev
+
+  ExperiencesTableName:
+    Description: DynamoDB table for Experiences
+    Value: !Ref ExperiencesTable
+
+  ProjectsTableName:
+    Description: DynamoDB table for Projects
+    Value: !Ref ProjectsTable

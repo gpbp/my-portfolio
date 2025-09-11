@@ -1,0 +1,196 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Portfolio Production Environment (secure with custom domains)
+
+Parameters:
+  PortfolioDomainName:
+    Type: String
+    Description: Custom domain for portfolio website (e.g. portfolio.example.com)
+  PortfolioACMCertificateArn:
+    Type: String
+    Description: ACM cert ARN for CloudFront (must be in us-east-1)
+  ApiDomainName:
+    Type: String
+    Description: Custom domain for API (e.g. api.example.com)
+  ApiACMCertificateArn:
+    Type: String
+    Description: ACM cert ARN for API Gateway (must be in same region as stack)
+  HostedZoneId:
+    Type: String
+    Description: Route53 Hosted Zone ID for the domain
+
+Resources:
+
+  #################################
+  # S3 + CloudFront (secure site) #
+  #################################
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-portfolio-prod-site
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
+
+  CloudFrontOAI:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: OAI for Portfolio site
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              CanonicalUser: !GetAtt CloudFrontOAI.S3CanonicalUserId
+            Action: s3:GetObject
+            Resource: !Sub "${SiteBucket.Arn}/*"
+
+  SiteCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Aliases: [ !Ref PortfolioDomainName ]
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOAI}"
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [ GET, HEAD ]
+          CachedMethods: [ GET, HEAD ]
+          Compress: true
+          ForwardedValues:
+            QueryString: false
+            Cookies: { Forward: none }
+        ViewerCertificate:
+          AcmCertificateArn: !Ref PortfolioACMCertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+
+  PortfolioDomainRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref PortfolioDomainName
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt SiteCloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+
+  #################################
+  # DynamoDB (prod)               #
+  #################################
+  ExperiencesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: my-portfolio-prod-experiences
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  ProjectsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: my-portfolio-prod-projects
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  #################################
+  # API Gateway + API Key + Domain
+  #################################
+  PortfolioApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: PortfolioApi-prod
+
+  RootMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref PortfolioApi
+      ResourceId: !GetAtt PortfolioApi.RootResourceId
+      HttpMethod: GET
+      AuthorizationType: NONE
+      ApiKeyRequired: true
+      Integration:
+        Type: MOCK
+
+  PortfolioApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn: RootMethod
+    Properties:
+      RestApiId: !Ref PortfolioApi
+      StageName: prod
+
+  PortfolioApiKey:
+    Type: AWS::ApiGateway::ApiKey
+    Properties:
+      Name: PortfolioApiKey
+      Enabled: true
+      StageKeys:
+        - RestApiId: !Ref PortfolioApi
+          StageName: prod
+
+  PortfolioUsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    Properties:
+      UsagePlanName: PortfolioUsagePlan
+      ApiStages:
+        - ApiId: !Ref PortfolioApi
+          Stage: prod
+      Throttle:
+        RateLimit: 10
+        BurstLimit: 2
+
+  PortfolioUsagePlanKey:
+    Type: AWS::ApiGateway::UsagePlanKey
+    Properties:
+      KeyId: !Ref PortfolioApiKey
+      KeyType: API_KEY
+      UsagePlanId: !Ref PortfolioUsagePlan
+
+  PortfolioApiDomain:
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      DomainName: !Ref ApiDomainName
+      EndpointConfiguration:
+        Types: [ REGIONAL ]
+      RegionalCertificateArn: !Ref ApiACMCertificateArn
+
+  PortfolioApiBasePathMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    Properties:
+      DomainName: !Ref PortfolioApiDomain
+      RestApiId: !Ref PortfolioApi
+      Stage: prod
+
+  ApiDomainRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref ApiDomainName
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt PortfolioApiDomain.RegionalDomainName
+        HostedZoneId: !GetAtt PortfolioApiDomain.RegionalHostedZoneId
+
+Outputs:
+  WebsiteDomain:
+    Description: Production website domain
+    Value: !Ref Port
