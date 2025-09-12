@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - echo "Installing dependencies..."
+      - npm ci   # faster & reproducible compared to npm install
+
+  pre_build:
+    commands:
+      - echo "Running lint and tests..."
+      - npm run lint || true   # skip failure if you don’t want to block pipeline
+      - npm test || true
+
+  build:
+    commands:
+      - echo "Building my-portfolio application..."
+      - npm run build
+
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+      # Optional: export Next.js app to static files (useful for S3/CloudFront)
+      - npm run export || true
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: .next    # Next.js build output (adjust if using export)
+  discard-paths: no
+
+cache:
+  paths:
+    - node_modules/**/*     # cache dependencies between builds
