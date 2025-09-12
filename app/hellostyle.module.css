@@ -1,0 +1,19 @@
+.customScrollbar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-color: red var(--color-yellow-500);
+}
+
+/* Target the div with a class or ID */
+.customScrollbar::-webkit-scrollbar {
+  width: 3px; /* scrollbar width */
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+  background: transparent; /* removes the track/border */
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+  border-radius: 0 9999px;     /* rounded thumb */
+  border: none;            /* removes any border if present */
+}

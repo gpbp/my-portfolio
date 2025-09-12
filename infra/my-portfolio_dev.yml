@@ -5,12 +5,15 @@ Parameters:
   GitHubOwner:
     Type: String
     Description: GitHub username or organization for the dev repo
+    Default: gpbp
   GitHubRepo:
     Type: String
     Description: GitHub repo name
-  GitHubOAuthTokenSSMParameter:
-    Type: String
-    Description: Name of the SSM parameter storing GitHub personal access token
+    Default: my-portfolio
+  GithubToken:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: SSM Parameter where the GitHub token is stored
+    Default: /my-portfolio/github/token
 
 Resources:
 
@@ -20,7 +23,7 @@ Resources:
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: my-portfolio-dev-site
+      BucketName: my-portfolio-dev-website
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
@@ -92,6 +95,7 @@ Resources:
   ################################################
   # CI/CD Pipeline for React App                 #
   ################################################
+
   PipelineBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -107,7 +111,7 @@ Resources:
               Service: codepipeline.amazonaws.com
             Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
+        - arn:aws:iam::aws:policy/AWSCodePipeline_FullAccess
         - arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
 
@@ -149,8 +153,8 @@ Resources:
               Configuration:
                 Owner: !Ref GitHubOwner
                 Repo: !Ref GitHubRepo
-                Branch: dev
-                OAuthToken: !Sub '{{resolve:ssm:${GitHubOAuthTokenSSMParameter}}}'
+                Branch: develop
+                OAuthToken: GithubToken
         - Name: Build
           Actions:
             - Name: ReactBuild
