@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUp } from "../icons";
 import styles from "./introduction.module.css";
 
-export default function BitcoinWidget() {
+export default function BitcoinWidget(): JSX.Element {
   return (
     <div className={`${styles.animation} border-none rounded-3xl bg-black w-40 h-40`}>
       <div className="absolute top-1 left-0 p-2 text-white">
