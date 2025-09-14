@@ -48,7 +48,7 @@ export default function MyProjects(): JSX.Element {
     return (
         <div className="my-4 flex flex-col gap-y-2">
             <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
-      A blend of <p className="bg-gradient-to-l from-orange-400 via-amber-400 to-yellow-300 inline-block text-transparent bg-clip-text">clean code</p>, <p className="bg-gradient-to-l from-orange-400 via-amber-400 to-yellow-300 inline text-transparent bg-clip-text">creative design</p>, and <p className="bg-gradient-to-l from-orange-400 via-amber-400 to-yellow-300 inline text-transparent bg-clip-text">practical problem-solving</p>.
+      A blend of <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline-block text-transparent bg-clip-text">clean code</p>, <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline text-transparent bg-clip-text">creative design</p>, and <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline text-transparent bg-clip-text">practical problem-solving</p>.
             </div>
             <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">
             Welcome to my projects! Here you can find a selection of my work, showcasing my skills and creativity.</div>

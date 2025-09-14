@@ -39,7 +39,7 @@ export default function MyServices(): JSX.Element {
         {
           services.map((service) => {
             return (
-                <div className="rounded-lg flex-1/3 mt-4 flex flex-col items-center shadow-xs shadow-gray-500 hover:shadow-md hover:shadow-gray-700 hover:cursor-pointer ease-in-out duration-500 hover:scale-105 hover:z-10 h-30 bg-blue-200 opacity-70">
+                <div key={service.id} className="rounded-lg flex-1/3 mt-4 flex flex-col items-center shadow-xs shadow-gray-500 hover:shadow-md hover:shadow-gray-700 hover:cursor-pointer ease-in-out duration-500 hover:scale-105 hover:z-10 h-30 bg-blue-200 opacity-70">
                     <div className="text-center font-roboto-mono font-bold">{service.name}</div>
                     <div className="text-center text-sm text-gray-500 font-roboto-mono">{service.description}</div>
                 </div>

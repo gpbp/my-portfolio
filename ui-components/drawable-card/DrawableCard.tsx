@@ -1,17 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type DrawableCardProps = {
-    title: string;
-    subtitle: string;
-    imageUrl: string;
+    header: React.ReactNode;
     content: React.ReactNode;
+    footer: React.ReactNode;
+    imageUrl: string;
     additionalCssClass?: string;
     shrunkImageBackgroundPosition?: string;
 };
 
-export default function DrawableCard({title, subtitle, imageUrl, content, additionalCssClass, shrunkImageBackgroundPosition}: DrawableCardProps) {
+export default function DrawableCard({header, content, footer, imageUrl, additionalCssClass, shrunkImageBackgroundPosition}: DrawableCardProps) {
     const [shrunk, setShrunk] = useState(false);
 
     const timeoutRef = useRef<number | null>(null);
@@ -41,12 +41,15 @@ export default function DrawableCard({title, subtitle, imageUrl, content, additi
     return (
         <div className={`${additionalCssClass} relative rounded-xl font-roboto-mono text-black h-100 font-bold bg-green-200 shadow-md shadow-gray-200 hover:shadow-gray-500 hover:cursor-pointer hover:scale-105 hover:z-10 ease-in-out duration-500 flex`} onMouseEnter={handleHover} onMouseLeave={handleReset}>
             <div className="h-full flex-1/3 rounded-l-xl"></div>
-            <div className="bg-white h-full flex-2/3 rounded-r-xl p-4 overflow-y-scroll [&::-webkit-scrollbar]:rounded-r-xl [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-gray-500 hover:[&::-webkit-scrollbar-thumb]:bg-gray-900 hover:[&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:m-3  [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:m-4">{content}</div>
+            <div className="bg-white h-full flex-2/3 rounded-r-xl p-4 overflow-y-scroll [&::-webkit-scrollbar]:rounded-r-xl [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-gray-500 hover:[&::-webkit-scrollbar-thumb]:bg-gray-900 hover:[&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:m-3  [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:m-4">
+                <div>{content}</div>
+                <div>{footer}</div>
+            </div>
             <div
-                className={`absolute left-0 top-0 p-4 h-100 font-roboto-mono bg-[url(${imageUrl})] bg-cover bg-start bg-no-repeat ${shrunk ? `w-1/3 ${shrunkImageBackgroundPosition} rounded-l-xl` : "w-full bg-center rounded-xl"} text-white font-bold ease-in-out duration-500`}
+                key={imageUrl}
+                className={`absolute left-0 top-0 p-4 h-100 font-roboto-mono bg-[url(${imageUrl ? imageUrl : '/img/meshImageFrame.png'})] bg-cover bg-start bg-no-repeat ${shrunk ? `w-1/3 ${shrunkImageBackgroundPosition} rounded-l-xl` : "w-full bg-center rounded-xl"} text-white font-bold ease-in-out duration-500`}
                 >
-                <p className="text-xl">{title}</p>
-                <p>{subtitle}</p>
+                {header}
             </div>  
         </div>
     );

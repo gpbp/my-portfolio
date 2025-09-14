@@ -13,7 +13,7 @@ type Experience = {
   duration: string;
   description: string;
   contractType: string;
-  imageUrl?: string;
+  imageUrl: string;
   shrunkImageBackgroundPosition?: string;
   techStack?: TechnologyDisplay[];
 };
@@ -86,20 +86,30 @@ challenge is <p className="bg-gradient-to-b from-blue-500 to-indigo-500
         {
           experiences.map((exp) => {
             const content = (
+              <div>{exp.description}</div>
+            );
+
+            const header = (
               <div>
-                  <div>{exp.description}</div>
-                  <div className="mt-4">
-                    {exp.techStack?.map((tech) => (
-                      <div key={tech.name} className={`rounded-full ${tech.color} px-2 py-1 inline-block text-black text-center mr-2`}>
-                        <p className="font-roboto-mono text-xs">{tech.name}</p>
-                      </div>
-                    ))}
+                <div className="text-xl">{exp.title}</div>
+                <div className="text-xs">{exp.company}</div>
+                <div className="text-xs">{exp.contractType}</div>
+                <div className="text-xs">{exp.duration}</div>
+              </div>
+            );
+
+            const footer = (
+              <div className="mt-4">
+                {exp.techStack?.map((tech) => (
+                  <div key={tech.name} className={`rounded-full bg-gradient-to-b from-blue-500 to-indigo-500 px-2 py-1 inline-block text-white text-center mr-2`}>
+                    <p className="font-roboto-mono text-xs">{tech.name}</p>
                   </div>
+                ))}
               </div>
             );
 
             return (
-              <DrawableCard title={exp.title} subtitle={exp.company} imageUrl={exp.imageUrl || '/img/meshImageFrame.jpg'} content={content} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
+              <DrawableCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
             );
         })}
       </div>
