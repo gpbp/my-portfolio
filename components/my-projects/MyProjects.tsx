@@ -1,3 +1,4 @@
+import DrawableCard from "@/ui-components/drawable-card/DrawableCard";
 import React from "react";
 
 type Project = {
@@ -5,10 +6,11 @@ type Project = {
     name: string;
     description: string;
     techStack: string[];
-    imageUrl?: string;
+    imageUrl: string;
     projectUrl?: string;
-    className?: string;
-    finished?: boolean;
+    githubUrl?: string;
+    onProduction: boolean;
+    shrunkImageBackgroundPosition: string;
 };
 
 const projects: Project[] = [
@@ -17,30 +19,33 @@ const projects: Project[] = [
         name: "Portfolio Website",
         description: "A personal portfolio website to showcase my projects and experiences.",
         techStack: ["React", "TypeScript", "Tailwind CSS"],
-        imageUrl: "/img/meshImageFrame.jpg",
-        projectUrl: "https://your-portfolio.com",
-        className: "rounded-xl font-roboto-mono flex-1/3 h-100 text-white font-bold p-4 bg-[url(/img/meshImageFrame.png)] bg-cover bg-center shadow-xs shadow-gray-200 hover:shadow-md hover:shadow-gray-500 hover:cursor-pointer ease-in-out duration-500 hover:scale-105 hover:z-10",
-        finished: true
+        imageUrl: "/img/meshImageFrame.png",
+        projectUrl: "localhost:3000",
+        githubUrl: "https://github.com/gpbp/my-portfolio",
+        onProduction: true,
+        shrunkImageBackgroundPosition: "bg-center"
     },
     {
         id: 2,
-        name: "Task Manager App",
-        description: "A web app to manage daily tasks and boost productivity.",
-        techStack: ["Next.js", "Node.js", "MongoDB"],
-        imageUrl: "/img/taskmanager.jpg",
+        name: "UI Library",
+        description: "A UI library for React applications",
+        techStack: ["Next.js", "Node.js", "PostgreSQL"],
+        imageUrl: "/img/uiLibrary.png",
         projectUrl: "https://your-taskmanager.com",
-        className: "rounded-xl font-roboto-mono flex-1/3 h-100 font-bold p-4 bg-[url(/img/taskManagement.png)] bg-cover bg-start shadow-xs shadow-gray-200 hover:shadow-md hover:shadow-gray-500 hover:cursor-pointer ease-in-out duration-500 hover:scale-105 hover:z-10",
-        finished: false
+        githubUrl: "https://github.com/gpbp/my-ui-library",
+        onProduction: false,
+        shrunkImageBackgroundPosition: "bg-center"
     },
     {
         id: 3,
         name: "Food ideas",
         description: "A platform to explore and share food recipes.",
-        techStack: ["React", "Redux", "Express"],
-        imageUrl: "/img/ecommerce.jpg",
-        projectUrl: "https://your-ecommerce.com",
-        className: "rounded-xl font-roboto-mono flex-1/3 h-100 text-white font-bold p-4 bg-[url(/img/foodIdeas.jpg)] bg-cover bg-start shadow-xs shadow-gray-200 hover:shadow-md hover:shadow-gray-500 hover:cursor-pointer ease-in-out duration-500 hover:scale-105 hover:z-10",
-        finished: false
+        techStack: ["React", "Redux", "Tailwind CSS"],
+        imageUrl: "/img/foodIdeas.jpg",
+        projectUrl: "https://www.recipetineats.com/",
+        githubUrl: "https://github.com/gpbp/food-ideas",
+        onProduction: false,
+        shrunkImageBackgroundPosition: "bg-center"
     }
 ];
 
@@ -53,16 +58,44 @@ export default function MyProjects(): JSX.Element {
             <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">
             Welcome to my projects! Here you can find a selection of my work, showcasing my skills and creativity.</div>
             <div className="flex gap-x-8 mt-4 px-8">
-                {projects.map((exp) => (
-                    <div
-                    key={exp.id}
-                    className={exp.className}
-                    >
-                    <h3>{exp.name}</h3>
-                    <p>{exp.description}</p>
-                    </div>
-                    ))}
-            </div>
-        </div>
-    );
-}
+                    {
+                      projects.map((project) => {
+                        const content = (
+                          <div>{project.description}</div>
+                        );
+            
+                        const header = (
+                          <div>
+                            <div className="text-xl">{project.name}</div>
+                          </div>
+                        );
+
+                        const projectLink = project.onProduction ?
+                                (<div className="mt-4">
+                                    <span>Link to the website: <a href={project.projectUrl} className="text-black hover:bg-gradient-to-b from-blue-500 to-indigo-500 hover:text-transparent bg-clip-text">{project.name}</a></span>
+                                </div>) : (<></>)
+            
+                        const footer = (
+                          <div>
+                            {projectLink}
+                            <div className="mt-4">
+                                <span>Link to the Github'repository: <a href={project.githubUrl} className="text-black hover:bg-gradient-to-b from-blue-500 to-indigo-500 hover:text-transparent bg-clip-text">{project.githubUrl}</a></span>
+                            </div>
+                            <div className="mt-4">
+                                {project.techStack?.map((tech) => (
+                                    <div key={tech} className={`rounded-full bg-gradient-to-b from-blue-500 to-indigo-500 px-2 py-1 inline-block text-white text-center mr-2`}>
+                                        <p className="font-roboto-mono text-xs">{tech}</p>
+                                    </div>
+                                ))}
+                            </div>
+                          </div>
+                        );
+            
+                        return (
+                          <DrawableCard key={project.id} header={header} content={content} footer={footer} imageUrl={project.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={project.shrunkImageBackgroundPosition} />
+                        );
+                    })}
+                  </div>
+                </div>);
+            }
+
