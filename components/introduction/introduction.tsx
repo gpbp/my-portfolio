@@ -7,7 +7,7 @@ import BitcoinWidget from "./BitcoinWidget";
 
 export default function Introduction(): JSX.Element {
   return (
-    <div className={`flex flex-row gap-x-2 mt-30`}>
+    <div className={`flex flex-row gap-x-2 mt-20`}>
       <div
         className="h-120 my-4 inline w-1/2"
       >
