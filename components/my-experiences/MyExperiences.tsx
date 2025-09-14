@@ -1,10 +1,6 @@
-import DrawableCard from "@/ui-components/drawable-card/DrawableCard";
+import TechStack from "@/ui-components/tech-stack/TechStack";
+import SlidingCard from "@/ui-components/drawable-card/SlidingCard";
 import React from "react";
-
-type TechnologyDisplay = {
-  name: string;
-  color: string;
-}
 
 type Experience = {
   id: number;
@@ -15,7 +11,7 @@ type Experience = {
   contractType: string;
   imageUrl: string;
   shrunkImageBackgroundPosition?: string;
-  techStack?: TechnologyDisplay[];
+  techStack: string[];
 };
 
 const experiences: Experience[] = [
@@ -28,13 +24,7 @@ const experiences: Experience[] = [
     description: "On a consulting mission at Crédit Agricole CIB: Build, maintain and improve a full-stack application of CACIB’s Trade Commodities Finance department that digitalizes the workflow of the Transaction Business Committee process and the management of CACIB’s clients Economic Position.",
     imageUrl: "/img/cacibSQY.jpg",
     shrunkImageBackgroundPosition: "bg-left",
-    techStack: [
-      { name: "VueJS", color: "bg-green-300" },
-      { name: "Java Spring Boot", color: "bg-red-500" },
-      { name: "PostgreSQL", color: "bg-yellow-500" },
-      { name: "GRPC", color: "bg-orange-500" },
-      { name: "Kubernetes", color: "bg-green-500" },
-    ],
+    techStack: ["VueJS", "Java Spring Boot", "PostgreSQL", "GRPC", "Kubernetes"]
   },
   {
     id: 2,
@@ -45,12 +35,7 @@ const experiences: Experience[] = [
     description: "On a consulting mission at Crédit Mutuel Arkéa: Develop Restful APIs that allows bankers to monitor the mortgage process (prêt immobilier) of their clients.",
     imageUrl: "/img/capgeminiBrest.jpg",
     shrunkImageBackgroundPosition: "bg-right",
-    techStack: [
-      { name: "VueJS", color: "bg-green-300" },
-      { name: "Java Spring Boot", color: "bg-red-500" },
-      { name: "Oracle Database", color: "bg-yellow-500" },
-      { name: "Restful API", color: "bg-orange-500" }
-    ],
+    techStack: ["VueJS", "Java Spring Boot", "Oracle Database", "Restful API"]
   },
   {
     id: 3,
@@ -61,13 +46,7 @@ const experiences: Experience[] = [
     description: "Design and develop full-stack applications to streamline the digitalization of food vouchers, enhancing security and reducing fraud. The initiative is sponsored by the United Nations, supporting global efforts toward transparency and efficiency in aid distribution.",
     imageUrl: "/img/famoco.png",
     shrunkImageBackgroundPosition: "bg-center",
-    techStack: [
-      { name: "Angular", color: "bg-green-300" },
-      { name: "Java Spring Boot", color: "bg-red-500" },
-      { name: "JHipster", color: "bg-yellow-500" },
-      { name: "PostgreSQL", color: "bg-orange-500" },
-      { name: "MongoDB", color: "bg-purple-500" }
-    ],
+    techStack: ["VueJS", "Java Spring Boot", "JHipster", "PostgreSQL", "MongoDB"]
   }
 ];
 
@@ -100,16 +79,12 @@ challenge is <p className="bg-gradient-to-b from-blue-500 to-indigo-500
 
             const footer = (
               <div className="mt-4">
-                {exp.techStack?.map((tech) => (
-                  <div key={tech.name} className={`rounded-full bg-gradient-to-b from-blue-500 to-indigo-500 px-2 py-1 inline-block text-white text-center mr-2`}>
-                    <p className="font-roboto-mono text-xs">{tech.name}</p>
-                  </div>
-                ))}
+                <TechStack techStack={exp.techStack}/>
               </div>
             );
 
             return (
-              <DrawableCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
+              <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
             );
         })}
       </div>

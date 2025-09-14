@@ -11,7 +11,7 @@ type DrawableCardProps = {
     shrunkImageBackgroundPosition?: string;
 };
 
-export default function DrawableCard({header, content, footer, imageUrl, additionalCssClass, shrunkImageBackgroundPosition}: DrawableCardProps) {
+export default function SlidingCard({header, content, footer, imageUrl, additionalCssClass, shrunkImageBackgroundPosition}: DrawableCardProps) {
     const [shrunk, setShrunk] = useState(false);
 
     const timeoutRef = useRef<number | null>(null);

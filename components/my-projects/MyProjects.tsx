@@ -1,4 +1,5 @@
-import DrawableCard from "@/ui-components/drawable-card/DrawableCard";
+import TechStack from "@/ui-components/tech-stack/TechStack";
+import SlidingCard from "@/ui-components/drawable-card/SlidingCard";
 import React from "react";
 
 type Project = {
@@ -81,18 +82,12 @@ export default function MyProjects(): JSX.Element {
                             <div className="mt-4">
                                 <span>Link to the Github'repository: <a href={project.githubUrl} className="text-black hover:bg-gradient-to-b from-blue-500 to-indigo-500 hover:text-transparent bg-clip-text">{project.githubUrl}</a></span>
                             </div>
-                            <div className="mt-4">
-                                {project.techStack?.map((tech) => (
-                                    <div key={tech} className={`rounded-full bg-gradient-to-b from-blue-500 to-indigo-500 px-2 py-1 inline-block text-white text-center mr-2`}>
-                                        <p className="font-roboto-mono text-xs">{tech}</p>
-                                    </div>
-                                ))}
-                            </div>
+                            <TechStack techStack={project.techStack}/>
                           </div>
                         );
             
                         return (
-                          <DrawableCard key={project.id} header={header} content={content} footer={footer} imageUrl={project.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={project.shrunkImageBackgroundPosition} />
+                          <SlidingCard key={project.id} header={header} content={content} footer={footer} imageUrl={project.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={project.shrunkImageBackgroundPosition} />
                         );
                     })}
                   </div>
