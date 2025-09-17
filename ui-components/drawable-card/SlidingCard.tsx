@@ -48,7 +48,8 @@ export default function SlidingCard({header, content, footer, imageUrl, shrunkIm
             <div
                 key={imageUrl}
                 className={`absolute left-0 top-0 p-4 h-100 font-roboto-mono bg-[url(${imageUrl ? imageUrl : '/img/meshImageFrame.png'})] bg-cover bg-start bg-no-repeat ${shrunk ? `w-1/3 ${shrunkImageBackgroundPosition} rounded-l-xl` : "w-full bg-center rounded-xl"} text-white font-bold ease-in-out duration-500`}
-                >
+                style={{ backgroundImage: `url(${imageUrl ? imageUrl : '/img/meshImageFrame.png'})` }}
+            >
                 {header}
             </div>  
         </div>
