@@ -5,6 +5,7 @@ import MyExperiences from "@/components/my-experiences/MyExperiences";
 import MyNetwork from "@/components/my-network/MyNetwork";
 import MyProjects from "@/components/my-projects/MyProjects";
 import MyServices from "@/components/my-services/MyServices";
+import Carousel from "@/ui-components/carousel/Carousel";
 import { useRef, useState } from "react";
 
 export default function Home(): JSX.Element {
@@ -40,6 +41,7 @@ export default function Home(): JSX.Element {
       <MyExperiences />
       <MyProjects />
       <MyNetwork />
+      <Carousel cards={[]} />
     </div>
   );
 }

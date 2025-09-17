@@ -62,7 +62,7 @@ export default function MyProjects(): JSX.Element {
                     {
                       projects.map((project) => {
                         const content = (
-                          <div>{project.description}</div>
+                          <div className="text-wrap">{project.description}</div>
                         );
             
                         const header = (
@@ -77,7 +77,7 @@ export default function MyProjects(): JSX.Element {
                                 </div>) : (<></>)
             
                         const footer = (
-                          <div>
+                          <div className="text-wrap">
                             {projectLink}
                             <div className="mt-4">
                                 <span>Link to the Github'repository: <a href={project.githubUrl} className="text-black hover:bg-gradient-to-b from-blue-500 to-indigo-500 hover:text-transparent bg-clip-text">{project.githubUrl}</a></span>
@@ -87,7 +87,7 @@ export default function MyProjects(): JSX.Element {
                         );
             
                         return (
-                          <SlidingCard key={project.id} header={header} content={content} footer={footer} imageUrl={project.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={project.shrunkImageBackgroundPosition} />
+                          <SlidingCard key={project.id} header={header} content={content} footer={footer} imageUrl={project.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={project.shrunkImageBackgroundPosition} />
                         );
                     })}
                   </div>

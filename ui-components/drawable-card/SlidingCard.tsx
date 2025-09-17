@@ -7,11 +7,11 @@ type DrawableCardProps = {
     content: React.ReactNode;
     footer: React.ReactNode;
     imageUrl: string;
-    additionalCssClass?: string;
+    className: string;
     shrunkImageBackgroundPosition?: string;
 };
 
-export default function SlidingCard({header, content, footer, imageUrl, additionalCssClass, shrunkImageBackgroundPosition}: DrawableCardProps) {
+export default function SlidingCard({header, content, footer, imageUrl, shrunkImageBackgroundPosition, className}: DrawableCardProps) {
     const [shrunk, setShrunk] = useState(false);
 
     const timeoutRef = useRef<number | null>(null);
@@ -39,9 +39,9 @@ export default function SlidingCard({header, content, footer, imageUrl, addition
     } 
 
     return (
-        <div className={`${additionalCssClass} relative rounded-xl font-roboto-mono text-black h-100 font-bold bg-green-200 shadow-md shadow-gray-200 hover:shadow-gray-500 hover:cursor-pointer hover:scale-105 hover:z-10 ease-in-out duration-500 flex`} onMouseEnter={handleHover} onMouseLeave={handleReset}>
+        <div className={`${className} relative rounded-xl font-roboto-mono font-bold bg-green-200 shadow-md shadow-gray-200 hover:shadow-gray-500 hover:cursor-pointer hover:scale-105 hover:z-10 ease-in-out duration-500 flex`} onMouseEnter={handleHover} onMouseLeave={handleReset}>
             <div className="h-full flex-1/3 rounded-l-xl"></div>
-            <div className="bg-white h-full flex-2/3 rounded-r-xl p-4 overflow-y-scroll [&::-webkit-scrollbar]:rounded-r-xl [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-gray-500 hover:[&::-webkit-scrollbar-thumb]:bg-gray-900 hover:[&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:m-3  [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:m-4">
+            <div className="bg-white h-full flex-2/3 rounded-r-xl p-4 overflow-x-hidden overflow-y-scroll [&::-webkit-scrollbar]:rounded-r-xl [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-gray-500 hover:[&::-webkit-scrollbar-thumb]:bg-gray-900 hover:[&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:m-3 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:m-4">
                 <div>{content}</div>
                 <div>{footer}</div>
             </div>

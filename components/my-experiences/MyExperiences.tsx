@@ -84,7 +84,7 @@ challenge is <p className="bg-gradient-to-b from-blue-500 to-indigo-500
             );
 
             return (
-              <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} additionalCssClass="flex-1/3" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
+              <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
             );
         })}
       </div>
