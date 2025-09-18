@@ -41,7 +41,6 @@ export default function Home(): JSX.Element {
       <MyExperiences />
       <MyProjects />
       <MyNetwork />
-      <Carousel cards={[]} />
     </div>
   );
 }

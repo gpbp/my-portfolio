@@ -1,53 +1,64 @@
 import { Button } from "@heroui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type CarouselProps = {
-    cards: React.ReactNode[];
+    cards: JSX.Element[];
+    className?: string;
 }
 
 export default function Carousel({ cards }: CarouselProps): JSX.Element {
-  const card2s = [0, 1,2,3,4,5];
-  const [index, setIndex] = useState(0);
-  const [displayedItems, setDisplayItems] = useState([])
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [windowSize, setWindowSize] = useState(3); 
+  const [visibleProducts, setVisibleProducts] = useState(cards.slice(currentIndex, currentIndex + windowSize));
 
-  const cardWidth = 350;
+  useEffect(() => {
+      const updateItemsToShow = () => {
+        if (window.innerWidth >= 1024) {
+          setWindowSize(3);
+        } else if (window.innerWidth >= 768) {
+          setWindowSize(2);
+        } else {
+          setWindowSize(1);
+        }
+      };
+      updateItemsToShow();
+
+      // Add listener
+      window.addEventListener("resize", updateItemsToShow);
+
+      // Cleanup listener on unmount
+      return () => window.removeEventListener("resize", updateItemsToShow);
+    }, []);
+  
+  useEffect(() => {
+    setVisibleProducts(cards.slice(currentIndex, currentIndex + windowSize));
+  }, [currentIndex, windowSize, cards]);
 
   function nextSlide(): void {
-    setIndex((prev) => Math.min(prev + 1, card2s.length - 1));
+    setCurrentIndex((prevIndex) => 
+      prevIndex + windowSize + 1 > cards.length ? prevIndex : prevIndex + 1
+    );
   };
 
   function prevSlide(): void {
-    setIndex((prev) => Math.max(prev - 1, 0));
+    setCurrentIndex((prevIndex) => 
+      prevIndex - 1 < 0 ? 0 : prevIndex - 1
+    );
   };
 
   return (
-    <div className={`relative my-4 h-100 flex gap-x-8 overflow-y-hidden overflow-x-scroll w-full [&::-webkit-scrollbar]:hidden`}>
-      <div className="flex gap-x-8 mt-4 px-8 w-full">
-        <div className={`bg-green-200 w-1/3 flex-none h-full rounded-xl transition-transform ease-in-out duration-500`} style={{ transform: `translateX(-${index * cardWidth}px)` }}
-></div>
-        <div className={`bg-green-200 w-1/3 flex-none h-full rounded-xl transition-transform ease-in-out duration-500`} style={{ transform: `translateX(-${index * cardWidth}px)` }}
-></div>
-        <div className={`bg-green-200 w-1/3 flex-none h-full rounded-xl transition-transform ease-in-out duration-500`} style={{ transform: `translateX(-${index * cardWidth}px)` }}
-> </div>
-        <div className={`bg-green-200 w-1/3 flex-none h-full rounded-xl transition-transform ease-in-out duration-500`} style={{ transform: `translateX(-${index * cardWidth}px)` }}
-></div>
-        <div className={`bg-green-200 w-1/3 flex-none h-full rounded-xl transition-transform ease-in-out duration-500`} style={{ transform: `translateX(-${index * cardWidth}px)` }}
-></div>
-        <div className={`bg-green-200 w-1/3 flex-none h-full rounded-xl transition-transform ease-in-out duration-500`} style={{ transform: `translateX(-${index * cardWidth}px)` }}
-></div>
-      </div>
-        
-
-        <Button isIconOnly className="absolute bg-white border-3 left-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10" radius="full" size="lg" onPress={prevSlide}>
-            <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-        </Button>
-        <Button isIconOnly className="absolute bg-white border-3 right-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10" radius="full" size="lg" onPress={nextSlide}>
-            <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-            </svg>
-        </Button>
-      </div>
+    <div className={`relative my-4 p-0 h-140 flex gap-x-8 overflow-y-hidden overflow-x-scroll w-full [&::-webkit-scrollbar]:hidden transition-transform duration-300`}>
+      {visibleProducts.map((product) => (product))}
+      <Button isIconOnly className="absolute bg-white border-3 left-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10" radius="full" size="lg" onPress={prevSlide}>
+        <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </Button>
+      <Button isIconOnly className="absolute bg-white border-3 right-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10" radius="full" size="lg" onPress={nextSlide}>
+        <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </Button>
+    </div>
   );
 };

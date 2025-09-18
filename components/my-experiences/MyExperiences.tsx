@@ -1,6 +1,7 @@
 import TechStack from "@/ui-components/tech-stack/TechStack";
 import SlidingCard from "@/ui-components/drawable-card/SlidingCard";
 import React from "react";
+import Carousel from "@/ui-components/carousel/Carousel";
 
 type Experience = {
   id: number;
@@ -47,11 +48,47 @@ const experiences: Experience[] = [
     imageUrl: "/img/famoco.png",
     shrunkImageBackgroundPosition: "bg-center",
     techStack: ["VueJS", "Java Spring Boot", "JHipster", "PostgreSQL", "MongoDB"]
+  },
+  {
+    id: 4,
+    title: "Something",
+    company: "Google",
+    contractType: "Internship",
+    duration: "March 2025 - March 2027",
+    description: "hello world",
+    imageUrl: "/img/meshImageFrame.png",
+    shrunkImageBackgroundPosition: "bg-center",
+    techStack: ["VueJS", "Java Spring Boot", "JHipster", "PostgreSQL", "MongoDB"]
   }
 ];
 
 
 export default function MyExperiences(): JSX.Element {
+  const cards = experiences.map((exp) => {
+    const content = (
+      <div>{exp.description}</div>
+    );
+
+    const header = (
+      <div>
+        <div className="text-xl">{exp.title}</div>
+        <div className="text-xs">{exp.company}</div>
+        <div className="text-xs">{exp.contractType}</div>
+        <div className="text-xs">{exp.duration}</div>
+      </div>
+    );
+
+    const footer = (
+      <div className="mt-4">
+        <TechStack techStack={exp.techStack}/>
+      </div>
+    );
+
+    return (
+      <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
+    );
+  });
+
   return (
 	<div className="my-4 flex flex-col gap-y-2">
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
@@ -61,32 +98,8 @@ challenge is <p className="bg-gradient-to-b from-blue-500 to-indigo-500
  inline text-transparent bg-clip-text">growth</p>.
     </div>
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">This is a brief overview of my professional journey. Each experience has contributed to my growth and skill set.</div>
-	  <div className="flex gap-x-8 mt-4 px-8">
-        {
-          experiences.map((exp) => {
-            const content = (
-              <div>{exp.description}</div>
-            );
-
-            const header = (
-              <div>
-                <div className="text-xl">{exp.title}</div>
-                <div className="text-xs">{exp.company}</div>
-                <div className="text-xs">{exp.contractType}</div>
-                <div className="text-xs">{exp.duration}</div>
-              </div>
-            );
-
-            const footer = (
-              <div className="mt-4">
-                <TechStack techStack={exp.techStack}/>
-              </div>
-            );
-
-            return (
-              <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
-            );
-        })}
-      </div>
+	  <div className="flex gap-x-8 mt-4 px-8"> 
+        <Carousel cards={cards}/>
+    </div>
     </div>);
 }

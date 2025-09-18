@@ -54,7 +54,7 @@ export default function MyServices(): JSX.Element {
         {
           services.map((service) => {
             return (
-              <ServiceCard title={service.name} content={service.description} footer={service.footer}></ServiceCard>
+              <ServiceCard key={service.id} title={service.name} content={service.description} footer={service.footer}></ServiceCard>
             );
         })}
       </div>
