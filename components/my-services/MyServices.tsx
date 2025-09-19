@@ -49,8 +49,8 @@ const services: Service[] = [
 
 export default function MyServices(): JSX.Element {
   return (
-    <div className="my-4 flex flex-col gap-y-2">
-      <div className="flex gap-x-8 mt-4 px-8">
+    <div className="flex flex-col gap-y-2">
+      <div className="flex gap-x-8 px-8">
         {
           services.map((service) => {
             return (

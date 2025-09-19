@@ -47,14 +47,14 @@ export default function Carousel({ cards }: CarouselProps): JSX.Element {
   };
 
   return (
-    <div className={`relative my-4 p-0 h-140 flex gap-x-8 overflow-y-hidden overflow-x-scroll w-full [&::-webkit-scrollbar]:hidden transition-transform duration-300`}>
+    <div className={`relative h-108 flex gap-x-8 px-8 py-4 overflow-y-hidden overflow-x-scroll w-full [&::-webkit-scrollbar]:hidden transition-transform duration-300`}>
       {visibleProducts.map((product) => (product))}
-      <Button isIconOnly className="absolute bg-white border-3 left-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10" radius="full" size="lg" onPress={prevSlide}>
+      <Button isIconOnly className="absolute bg-white hover:border-1 hover:border-gray-200 left-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10 opacity-30" radius="full" size="lg" onPress={prevSlide}>
         <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </Button>
-      <Button isIconOnly className="absolute bg-white border-3 right-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10" radius="full" size="lg" onPress={nextSlide}>
+      <Button isIconOnly className="absolute bg-white hover:border-1 hover:border-gray-200 right-0 top-1/2 -translate-y-1/2 p-2 shadow-lg z-10 opacity-30" radius="full" size="lg" onPress={nextSlide}>
         <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
         </svg>

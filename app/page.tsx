@@ -35,7 +35,7 @@ export default function Home(): JSX.Element {
   };
   
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-8">
       <Introduction />
       <MyServices />
       <MyExperiences />

@@ -90,7 +90,7 @@ export default function MyExperiences(): JSX.Element {
   });
 
   return (
-	<div className="my-4 flex flex-col gap-y-2">
+	<div className="flex flex-col gap-y-2">
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
       Behind every project is a <p className="bg-gradient-to-b from-blue-500 to-indigo-500
  inline-block text-transparent bg-clip-text">lesson</p>, and behind every
@@ -98,8 +98,6 @@ challenge is <p className="bg-gradient-to-b from-blue-500 to-indigo-500
  inline text-transparent bg-clip-text">growth</p>.
     </div>
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">This is a brief overview of my professional journey. Each experience has contributed to my growth and skill set.</div>
-	  <div className="flex gap-x-8 mt-4 px-8"> 
-        <Carousel cards={cards}/>
-    </div>
-    </div>);
+    <Carousel cards={cards}/>
+  </div>);
 }
