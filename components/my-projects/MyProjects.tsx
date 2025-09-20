@@ -1,5 +1,5 @@
 import TechStack from "@/ui-components/tech-stack/TechStack";
-import SlidingCard from "@/ui-components/drawable-card/SlidingCard";
+import SlidingCard from "@/ui-components/sliding-card/SlidingCard";
 import React from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
 
