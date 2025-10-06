@@ -21,54 +21,6 @@ export type ExperienceDisplay = Experience & {
   shrunkImageBackgroundPosition: string;
 };
 
-
-const experiences: ExperienceDisplay[] = [
-  {
-    id: 1,
-    title: "Full-stack Developer",
-    company: "Capgemini",
-    duration: "May 2023 - Present",
-    contractType: "Permanent Contract",
-    description: "On a consulting mission at Crédit Agricole CIB: Build, maintain and improve a full-stack application of CACIB’s Trade Commodities Finance department that digitalizes the workflow of the Transaction Business Committee process and the management of CACIB’s clients Economic Position.",
-    imageUrl: "/img/cacibSQY.jpg",
-    shrunkImageBackgroundPosition: "bg-left",
-    techStack: ["VueJS", "Java Spring Boot", "PostgreSQL", "GRPC", "Kubernetes"]
-  },
-  {
-    id: 2,
-    title: "Full-stack Developer",
-    company: "Capgemini",
-    contractType: "Permanent Contract",
-    duration: "March 2021 - December 2022",
-    description: "On a consulting mission at Crédit Mutuel Arkéa: Develop Restful APIs that allows bankers to monitor the mortgage process (prêt immobilier) of their clients.",
-    imageUrl: "/img/capgeminiBrest.jpg",
-    shrunkImageBackgroundPosition: "bg-right",
-    techStack: ["VueJS", "Java Spring Boot", "Oracle Database", "Restful API"]
-  },
-  {
-    id: 3,
-    title: "Full-stack Developer",
-    company: "Famoco",
-    contractType: "Internship",
-    duration: "March 2020 - September 2020",
-    description: "Design and develop full-stack applications to streamline the digitalization of food vouchers, enhancing security and reducing fraud. The initiative is sponsored by the United Nations, supporting global efforts toward transparency and efficiency in aid distribution.",
-    imageUrl: "/img/famoco.png",
-    shrunkImageBackgroundPosition: "bg-center",
-    techStack: ["VueJS", "Java Spring Boot", "JHipster", "PostgreSQL", "MongoDB"]
-  },
-  {
-    id: 4,
-    title: "Something",
-    company: "Google",
-    contractType: "Internship",
-    duration: "March 2025 - March 2027",
-    description: "hello world",
-    imageUrl: "/img/meshImageFrame.png",
-    shrunkImageBackgroundPosition: "bg-center",
-    techStack: ["VueJS", "Java Spring Boot", "JHipster", "PostgreSQL", "MongoDB"]
-  }
-];
-
 export default function MyExperiences(): JSX.Element { 
   const [experiences, setExperiences] = useState<ExperienceDisplay[]>([]);
   const [loading, setLoading] = useState(false);
