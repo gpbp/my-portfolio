@@ -1,9 +1,17 @@
+"use client"
+
 import TechStack from "@/ui-components/tech-stack/TechStack";
 import SlidingCard from "@/ui-components/sliding-card/SlidingCard";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
+import MyExperiencesRedux from "./MyExperiencesReduxNew";
+import MyExperiencesReduxNew from "./MyExperiencesReduxNew";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { fetchExperiences } from "@/store/features/experiences/experiencesSlice";
+import ReduxDemo from "./ReduxDemo";
+import { Skeleton } from "@heroui/skeleton";
 
-type Experience = {
+export type Experience = {
   id: number;
   title: string;
   company: string;
@@ -11,11 +19,15 @@ type Experience = {
   description: string;
   contractType: string;
   imageUrl: string;
-  shrunkImageBackgroundPosition?: string;
   techStack: string[];
 };
 
-const experiences: Experience[] = [
+export type ExperienceDisplay = Experience & {
+  shrunkImageBackgroundPosition: string;
+};
+
+
+const experiences: ExperienceDisplay[] = [
   {
     id: 1,
     title: "Full-stack Developer",
@@ -62,33 +74,64 @@ const experiences: Experience[] = [
   }
 ];
 
+export default function MyExperiences(): JSX.Element { 
+  const [experiences, setExperiences] = useState<ExperienceDisplay[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [cards, setCards] = useState<JSX.Element[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-export default function MyExperiences(): JSX.Element {
-  const cards = experiences.map((exp) => {
-    const content = (
-      <div>{exp.description}</div>
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('/api/experiences');
+        if (response.ok) {
+          const data = await response.json();
+          setExperiences(data);
+        }
+      } catch (error) {
+        setError("Failed to fetch experiences");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
-    const header = (
-      <div>
-        <div className="text-xl">{exp.title}</div>
-        <div className="text-xs">{exp.company}</div>
-        <div className="text-xs">{exp.contractType}</div>
-        <div className="text-xs">{exp.duration}</div>
-      </div>
-    );
+  useEffect(() => {
+    if (loading || experiences.length === 0) {
+      setCards([<Skeleton key={1} className="flex-1/3 h-100 rounded-xl hover:cursor-pointer">
+      </Skeleton>, <Skeleton key={2} className="flex-1/3 h-100 rounded-xl hover:cursor-pointer">
+      </Skeleton>, <Skeleton key={3} className="flex-1/3 h-100 rounded-xl hover:cursor-pointer">
+      </Skeleton>]);
+    } else {
+      setCards(experiences?.map((exp) => {
+        const content = (
+          <div>{exp.description}</div>
+        );
 
-    const footer = (
-      <div className="mt-4">
-        <TechStack techStack={exp.techStack}/>
-      </div>
-    );
+        const header = (
+          <div>
+            <div className="text-xl">{exp.title}</div>
+            <div className="text-xs">{exp.company}</div>
+            <div className="text-xs">{exp.contractType}</div>
+            <div className="text-xs">{exp.duration}</div>
+          </div>
+        );
 
-    return (
-      <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
-    );
-  });
+        const footer = (
+          <div className="mt-4">
+            <TechStack techStack={exp.techStack}/>
+          </div>
+        );
 
+        return (
+          <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
+        );
+      }));
+    }
+  }, [loading]);
+  
   return (
 	<div className="flex flex-col gap-y-2">
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">

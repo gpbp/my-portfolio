@@ -47,7 +47,7 @@ export default function MyNetwork(): JSX.Element {
         {
           professionals.map((prof) => {
             return (
-              <div className="flex flex-col items-center">
+              <div key={prof.id} className="flex flex-col items-center">
                 <Image src={prof.imageUrl} alt={prof.name} className={`rounded-full ${prof.className} cursor-pointer`} height={240} width={240}/>
                 <div className="text-center font-roboto-mono font-bold">{prof.name}</div>
                 <div className="text-center text-sm text-gray-500 font-roboto-mono">{prof.role}</div>
