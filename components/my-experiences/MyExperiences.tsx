@@ -4,11 +4,6 @@ import TechStack from "@/ui-components/tech-stack/TechStack";
 import SlidingCard from "@/ui-components/sliding-card/SlidingCard";
 import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
-import MyExperiencesRedux from "./MyExperiencesReduxNew";
-import MyExperiencesReduxNew from "./MyExperiencesReduxNew";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { fetchExperiences } from "@/store/features/experiences/experiencesSlice";
-import ReduxDemo from "./ReduxDemo";
 import { Skeleton } from "@heroui/skeleton";
 
 export type Experience = {
@@ -105,7 +100,11 @@ export default function MyExperiences(): JSX.Element {
       </Skeleton>, <Skeleton key={3} className="flex-1/3 h-100 rounded-xl hover:cursor-pointer">
       </Skeleton>]);
     } else {
-      setCards(experiences?.map((exp) => {
+      setCards(
+        experiences
+          ?.slice()
+          .sort((a, b) => a.id - b.id)
+          .map((exp) => {
         const content = (
           <div>{exp.description}</div>
         );
@@ -126,9 +125,18 @@ export default function MyExperiences(): JSX.Element {
         );
 
         return (
-          <SlidingCard key={exp.id} header={header} content={content} footer={footer} imageUrl={exp.imageUrl} className="flex-1/3 h-100" shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition} />
+          <SlidingCard
+            key={exp.id}
+            header={header}
+            content={content}
+            footer={footer}
+            imageUrl={exp.imageUrl}
+            className="flex-1/3 h-100"
+            shrunkImageBackgroundPosition={exp.shrunkImageBackgroundPosition}
+          />
         );
-      }));
+      })
+      );
     }
   }, [loading]);
   
