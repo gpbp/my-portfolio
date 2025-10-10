@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { ExperienceDisplay } from "./MyExperiences";
 
 export type ExperienceAPIResponse = {
