@@ -1,5 +1,4 @@
 import React from "react";
-import {Image} from "@heroui/image";
 import ServiceCard from "./ServiceCard";
 import { AmazonWebServices, Angular, MongoDB, PostgreSQL, ReactIcon, Spring, TailwindCSS, Vue } from "../icons";
 
