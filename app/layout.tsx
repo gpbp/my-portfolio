@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans, helveticaBold, robotoMonoFont, segoeUI } from "@/config/fonts";
+import { LangProvider } from './context/LanguageContext';
 
 export const metadata: Metadata = {
   title: {
@@ -44,7 +45,7 @@ export default function RootLayout({
             <main className="container mx-auto max-w-9xl flex-grow bg-white">
               {children}
             </main>
-          </div>
+          </div>          
         </Providers>
       </body>
     </html>

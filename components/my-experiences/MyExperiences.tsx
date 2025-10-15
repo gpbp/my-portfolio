@@ -5,6 +5,7 @@ import SlidingCard from "@/ui-components/sliding-card/SlidingCard";
 import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
+import { useLang } from "@/app/context/LanguageContext";
 
 export type Experience = {
   id: number;
@@ -15,6 +16,7 @@ export type Experience = {
   contractType: string;
   imageUrl: string;
   techStack: string[];
+  languageCode: string;
 };
 
 export type ExperienceDisplay = Experience & {
@@ -26,12 +28,14 @@ export default function MyExperiences(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [cards, setCards] = useState<JSX.Element[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const { lang } = useLang();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/experiences');
+        const langParam = !!lang ? `${lang}` : 'en';
+        const response = await fetch(`/api/experiences?lang=${langParam}`);
         if (response.ok) {
           const data = await response.json();
           setExperiences(data);
@@ -43,7 +47,7 @@ export default function MyExperiences(): JSX.Element {
       }
     };
     fetchData();
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     if (loading || experiences.length === 0) {

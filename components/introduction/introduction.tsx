@@ -1,11 +1,19 @@
+"use client";
 import { Card, CardBody } from "@heroui/card";
 import styles from "./introduction.module.css";
 import SpotifyWidget from "./spotify-widget";
 import {Button} from "@heroui/button";
 import { ArrowDownTray, ArrowRight } from "../icons";
 import BitcoinWidget from "./BitcoinWidget";
+import { Lang, useLang } from "@/app/context/LanguageContext";
 
 export default function Introduction(): JSX.Element {
+  const { switchLang } = useLang();
+
+  const toggleLang = (language: Lang) => {
+    switchLang(language);
+  };
+  
   return (
     <div className={`flex flex-row gap-x-2 mt-20`}>
       <div
@@ -29,6 +37,12 @@ export default function Introduction(): JSX.Element {
         <div className="flex flex-col gap-y-4">
           <SpotifyWidget />
           <BitcoinWidget />
+          <Button onPress={() => toggleLang('en')}
+      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-100 dark:hover:bg-gray-800">EN</Button>
+          <Button onPress={() => toggleLang('fr')}
+      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-100 dark:hover:bg-gray-800">FR</Button>
+          <Button onPress={() => toggleLang('vi')}
+      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-100 dark:hover:bg-gray-800">VI</Button>
         </div>
         <Card className={`${styles.animation_12s} py-4 bg-[#0d1117] cursor-pointer w-1/3 h-85`}>
             <CardBody className="overflow-visible py-2">
