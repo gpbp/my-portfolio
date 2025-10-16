@@ -5,7 +5,7 @@ import SlidingCard from "@/ui-components/sliding-card/SlidingCard";
 import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
-import { useLang } from "@/app/context/LanguageContext";
+import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
 
 type Project = {
     id: number;
@@ -33,7 +33,7 @@ export default function MyProjects(): JSX.Element {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const langParam = !!lang ? `${lang}` : 'en';
+        const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
         const response = await fetch(`/api/projects?lang=${langParam}`);
         if (response.ok) {
           const data = await response.json();

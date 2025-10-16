@@ -24,12 +24,22 @@ export default function Introduction(): JSX.Element {
             <p>Building <span className="bg-gradient-to-r from-red-500 to-orange-500 inline-block text-transparent bg-clip-text">clean code</span> and <span className="bg-gradient-to-r from-red-500 to-orange-500 inline text-transparent bg-clip-text">beautiful</span> experiences.</p>
           </div>
           <div className="font-roboto-mono flex gap-x-4 items-start justify-items-start px-8 py-4 text-6xl font-bold w-full">
-            <Button className="text-tiny text-white flex flex-row" color="primary" radius="lg" size="sm" variant="solid">
+            <Button className="text-tiny text-white flex flex-row flex-1/3" color="primary" radius="lg" size="sm" variant="solid">
               Let's collaborate <ArrowRight />
             </Button>
-            <Button className="text-tiny text-white flex flex-row" color="primary" radius="lg" size="sm" variant="solid">
+            <Button className="text-tiny text-white flex flex-row flex-1/3" color="primary" radius="lg" size="sm" variant="solid">
               Download my CV <ArrowDownTray />
             </Button>
+            <div className="flex rounded-xl bg-primary font-roboto-mono text-tiny text-white h-full flex-1/3">
+              <div
+                className="cursor-pointer flex items-center justify-center flex-1/3 "
+                onClick={() => toggleLang('en')}
+              >
+                En
+              </div>
+              <div className="cursor-pointer flex items-center justify-center flex-1/3 border-x border-white/20" onClick={() => toggleLang('fr')}>Fr</div>
+              <div className="cursor-pointer flex items-center justify-center flex-1/3" onClick={() => toggleLang('vi')}>Vi</div>
+          </div>
           </div>
         </div>
       </div>
@@ -37,12 +47,6 @@ export default function Introduction(): JSX.Element {
         <div className="flex flex-col gap-y-4">
           <SpotifyWidget />
           <BitcoinWidget />
-          <Button onPress={() => toggleLang('en')}
-      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-100 dark:hover:bg-gray-800">EN</Button>
-          <Button onPress={() => toggleLang('fr')}
-      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-100 dark:hover:bg-gray-800">FR</Button>
-          <Button onPress={() => toggleLang('vi')}
-      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-100 dark:hover:bg-gray-800">VI</Button>
         </div>
         <Card className={`${styles.animation_12s} py-4 bg-[#0d1117] cursor-pointer w-1/3 h-85`}>
             <CardBody className="overflow-visible py-2">

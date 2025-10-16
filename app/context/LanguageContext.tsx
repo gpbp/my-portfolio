@@ -4,6 +4,8 @@ import { usePathname, useRouter } from 'next/navigation';
 
 export type Lang = 'en' | 'fr' | 'vi';
 
+export const DEFAULT_LANG: Lang = 'en';
+
 interface LangContextType {
   lang: Lang;
   switchLang: (lang: Lang) => void;
