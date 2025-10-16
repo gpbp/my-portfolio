@@ -5,6 +5,7 @@ import SlidingCard from "@/ui-components/sliding-card/SlidingCard";
 import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
+import { useLang } from "@/app/context/LanguageContext";
 
 type Project = {
     id: number;
@@ -26,12 +27,14 @@ export default function MyProjects(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [cards, setCards] = useState<JSX.Element[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const { lang } = useLang();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/projects');
+        const langParam = !!lang ? `${lang}` : 'en';
+        const response = await fetch(`/api/projects?lang=${langParam}`);
         if (response.ok) {
           const data = await response.json();
           setProjects(data);
@@ -43,7 +46,7 @@ export default function MyProjects(): JSX.Element {
       }
     };
     fetchData();
-  }, []);
+  }, [lang]);
 
    useEffect(() => {
     if (loading || projects.length === 0) {
