@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import {Image} from "@heroui/image";
 import { Skeleton } from "@heroui/skeleton";
+import { useTranslations } from "@/app/i18n/useTranslations";
 
 type ITProfessional = {
     id: number;
@@ -17,6 +18,7 @@ export default function MyNetwork(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [professionalDisplay, setProfessionalDisplay] = useState<React.ReactNode[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const t = useTranslations();
   
     useEffect(() => {
       const fetchData = async () => {
@@ -58,9 +60,9 @@ export default function MyNetwork(): JSX.Element {
   return (
     <div className="flex flex-col gap-y-2">
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
-      Success isn’t just <p className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 inline-block text-transparent bg-clip-text">WHAT</p> you know, it’s also <p className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 inline text-transparent bg-clip-text">WHO</p> you know.
+      {t.myNetwork.title.success} <p className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 inline-block text-transparent bg-clip-text">{t.myNetwork.title.what}</p> {t.myNetwork.title.youKnow} <p className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 inline text-transparent bg-clip-text">{t.myNetwork.title.who}</p> {t.myNetwork.title.youKnow2}
     </div>
-    <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">Building strong professional relationships has always been a key part of my journey. Here are the networks and communities where I actively collaborate and grow.</div>
+    <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">{t.myNetwork.description}</div>
       <div className="flex gap-x-8 px-8 py-4">
         {professionalDisplay}
       </div>

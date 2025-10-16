@@ -16,5 +16,51 @@
       "username": "gpbp",
       "bio": "💻 Lập trình viên Full-Stack | ☁️ Đam mê Cloud | 🚀 Luôn học hỏi"
     }
+  },
+  "myExperiences": {
+    "title": {
+      "behind": "Đằng sau mỗi dự án là một",
+      "lesson": "bài học",
+      "andBehind": ", và đằng sau mỗi thử thách là sự",
+      "growth": "trưởng thành",
+      "dot": "."
+    },
+    "description": "Đây là tổng quan ngắn gọn về hành trình nghề nghiệp của tôi. Mỗi trải nghiệm đều đóng góp vào sự phát triển và kỹ năng của tôi."
+  },
+  "myProjects": {
+    "title": {
+      "blend": "Sự kết hợp của",
+      "cleanCode": "code sạch",
+      "comma1": ",",
+      "creativeDesign": "thiết kế sáng tạo",
+      "comma2": " và",
+      "practicalProblemSolving": "giải quyết vấn đề thực tế",
+      "dot": "."
+    },
+    "description": "Chào mừng đến với các dự án của tôi! Tại đây bạn có thể tìm thấy các công việc của tôi, thể hiện kỹ năng và sự sáng tạo."
+  },
+  "myServices": {
+    "frontend": {
+      "name": "Phát triển Frontend",
+      "description": "Tôi xây dựng giao diện được hướng dẫn bởi sự rõ ràng và khả năng tái sử dụng, sử dụng các nguyên tắc thiết kế sạch, thực hành hướng kiểm thử và các mẫu làm cho trải nghiệm người dùng vừa đáng tin cậy vừa linh hoạt."
+    },
+    "backend": {
+      "name": "Phát triển Backend",
+      "description": "Tôi thiết kế các hệ thống back-end với nền tảng SOLID, logic nghiệp vụ được kiểm tra và các mẫu thiết kế đã được chứng minh để đảm bảo khả năng mở rộng, tính linh hoạt và khả năng bảo trì lâu dài."
+    },
+    "cloud": {
+      "name": "Phát triển AWS Cloud",
+      "description": "Tôi xây dựng các giải pháp đám mây với kiến trúc sạch, thực hành tự động hóa ưu tiên và khả năng phục hồi đã được kiểm tra, cung cấp cơ sở hạ tầng mở rộng một cách dự đoán được và an toàn."
+    }
+  },
+  "myNetwork": {
+    "title": {
+      "success": "Thành công không chỉ là",
+      "what": "ĐIỀU GÌ",
+      "youKnow": "bạn biết, mà còn là",
+      "who": "AI",
+      "youKnow2": "bạn biết."
+    },
+    "description": "Xây dựng các mối quan hệ nghề nghiệp vững chắc luôn là một phần quan trọng trong hành trình của tôi. Đây là các mạng lưới và cộng đồng nơi tôi tích cực hợp tác và phát triển."
   }
 }

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
 import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
+import { useTranslations } from "@/app/i18n/useTranslations";
 
 type Project = {
     id: number;
@@ -28,6 +29,7 @@ export default function MyProjects(): JSX.Element {
   const [cards, setCards] = useState<JSX.Element[]>([]);
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLang();
+  const t = useTranslations();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,10 +98,11 @@ export default function MyProjects(): JSX.Element {
   return (
     <div className="flex flex-col gap-y-2">
         <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
-  A blend of <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline-block text-transparent bg-clip-text">clean code</p>, <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline text-transparent bg-clip-text">creative design</p>, and <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline text-transparent bg-clip-text">practical problem-solving</p>.
+          {t.myProjects.title.blend} <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline-block text-transparent bg-clip-text">{t.myProjects.title.cleanCode}</p>{t.myProjects.title.comma1} <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline text-transparent bg-clip-text">{t.myProjects.title.creativeDesign}</p>{t.myProjects.title.comma2} <p className="bg-gradient-to-l from-teal-400 via-cyan-400 to-blue-500 inline text-transparent bg-clip-text">{t.myProjects.title.practicalProblemSolving}</p>{t.myProjects.title.dot}
         </div>
         <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">
-        Welcome to my projects! Here you can find a selection of my work, showcasing my skills and creativity.</div>
+          {t.myProjects.description}
+        </div>
         <Carousel cards={cards} />
     </div>
   );

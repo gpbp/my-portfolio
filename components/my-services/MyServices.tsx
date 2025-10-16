@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import ServiceCard from "./ServiceCard";
 import { AmazonWebServices, Angular, MongoDB, PostgreSQL, ReactIcon, Spring, TailwindCSS, Vue } from "../icons";
+import { useTranslations } from "@/app/i18n/useTranslations";
 
 type Service = {
     id: number;
@@ -8,11 +10,15 @@ type Service = {
     description: string;
     footer?: React.ReactNode;
 }
-const services: Service[] = [
+
+export default function MyServices(): JSX.Element {
+  const t = useTranslations();
+  
+  const services: Service[] = [
     {
         id: 1,
-        name: "Frontend Development",
-        description: "I craft interfaces guided by clarity and reusability, using principles of clean design, test-driven practices, and patterns that make user experiences both reliable and adaptable.",
+        name: t.myServices.frontend.name,
+        description: t.myServices.frontend.description,
         footer: (
           <div className="flex gap-x-4">
             <Vue></Vue>
@@ -24,8 +30,8 @@ const services: Service[] = [
     },
     {
         id: 2,
-        name: "Backend Development",
-        description: "I design back-end systems with SOLID foundations, tested business logic, and proven design patterns to ensure scalability, resilience, and long-term maintainability.",
+        name: t.myServices.backend.name,
+        description: t.myServices.backend.description,
         footer: (
           <div className="flex gap-x-4">
             <Spring></Spring>
@@ -36,17 +42,15 @@ const services: Service[] = [
     },
     {
         id: 3,
-        name: "AWS Cloud Development",
-        description: "I build cloud solutions with clean architectures, automation-first practices, and tested resilience, delivering infrastructures that scale predictably and securely.",
+        name: t.myServices.cloud.name,
+        description: t.myServices.cloud.description,
         footer: (
           <div className="flex gap-x-4">
             <AmazonWebServices></AmazonWebServices>
           </div>
         )
     }
-]
-
-export default function MyServices(): JSX.Element {
+  ];
   return (
     <div className="flex flex-col gap-y-2">
       <div className="flex gap-x-8 px-8">

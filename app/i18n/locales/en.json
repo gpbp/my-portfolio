@@ -16,5 +16,51 @@
       "username": "gpbp",
       "bio": "💻 Full-Stack Developer | ☁️ Cloud Enthusiast | 🚀 Always learning"
     }
+  },
+  "myExperiences": {
+    "title": {
+      "behind": "Behind every project is a",
+      "lesson": "lesson",
+      "andBehind": ", and behind every challenge is",
+      "growth": "growth",
+      "dot": "."
+    },
+    "description": "This is a brief overview of my professional journey. Each experience has contributed to my growth and skill set."
+  },
+  "myProjects": {
+    "title": {
+      "blend": "A blend of",
+      "cleanCode": "clean code",
+      "comma1": ",",
+      "creativeDesign": "creative design",
+      "comma2": ", and",
+      "practicalProblemSolving": "practical problem-solving",
+      "dot": "."
+    },
+    "description": "Welcome to my projects! Here you can find a selection of my work, showcasing my skills and creativity."
+  },
+  "myServices": {
+    "frontend": {
+      "name": "Frontend Development",
+      "description": "I craft interfaces guided by clarity and reusability, using principles of clean design, test-driven practices, and patterns that make user experiences both reliable and adaptable."
+    },
+    "backend": {
+      "name": "Backend Development",
+      "description": "I design back-end systems with SOLID foundations, tested business logic, and proven design patterns to ensure scalability, resilience, and long-term maintainability."
+    },
+    "cloud": {
+      "name": "AWS Cloud Development",
+      "description": "I build cloud solutions with clean architectures, automation-first practices, and tested resilience, delivering infrastructures that scale predictably and securely."
+    }
+  },
+  "myNetwork": {
+    "title": {
+      "success": "Success isn't just",
+      "what": "WHAT",
+      "youKnow": "you know, it's also",
+      "who": "WHO",
+      "youKnow2": "you know."
+    },
+    "description": "Building strong professional relationships has always been a key part of my journey. Here are the networks and communities where I actively collaborate and grow."
   }
 }

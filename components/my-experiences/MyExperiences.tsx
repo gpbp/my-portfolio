@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
 import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
+import { useTranslations } from "@/app/i18n/useTranslations";
 
 export type Experience = {
   id: number;
@@ -29,6 +30,7 @@ export default function MyExperiences(): JSX.Element {
   const [cards, setCards] = useState<JSX.Element[]>([]);
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLang();
+  const t = useTranslations();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,12 +101,9 @@ export default function MyExperiences(): JSX.Element {
   return (
 	<div className="flex flex-col gap-y-2">
     <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-4xl font-bold w-2/3">
-      Behind every project is a <p className="bg-gradient-to-b from-blue-500 to-indigo-500
- inline-block text-transparent bg-clip-text">lesson</p>, and behind every
-challenge is <p className="bg-gradient-to-b from-blue-500 to-indigo-500
- inline text-transparent bg-clip-text">growth</p>.
+      {t.myExperiences.title.behind} <p className="bg-gradient-to-b from-blue-500 to-indigo-500 inline-block text-transparent bg-clip-text">{t.myExperiences.title.lesson}</p>{t.myExperiences.title.andBehind} <p className="bg-gradient-to-b from-blue-500 to-indigo-500 inline text-transparent bg-clip-text">{t.myExperiences.title.growth}</p>{t.myExperiences.title.dot}
     </div>
-    <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">This is a brief overview of my professional journey. Each experience has contributed to my growth and skill set.</div>
+    <div className="font-roboto-mono inline-block items-center justify-center px-8 py-4 text-lg text-gray-500 font-bold w-1/2">{t.myExperiences.description}</div>
     <Carousel cards={cards}/>
   </div>);
 }

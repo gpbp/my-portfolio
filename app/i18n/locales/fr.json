@@ -16,5 +16,51 @@
       "username": "gpbp",
       "bio": "💻 Développeur Full-Stack | ☁️ Passionné du Cloud | 🚀 Toujours en apprentissage"
     }
+  },
+  "myExperiences": {
+    "title": {
+      "behind": "Derrière chaque projet se cache une",
+      "lesson": "leçon",
+      "andBehind": ", et derrière chaque défi se trouve une",
+      "growth": "croissance",
+      "dot": "."
+    },
+    "description": "Voici un bref aperçu de mon parcours professionnel. Chaque expérience a contribué à ma croissance et à mes compétences."
+  },
+  "myProjects": {
+    "title": {
+      "blend": "Un mélange de",
+      "cleanCode": "code propre",
+      "comma1": ",",
+      "creativeDesign": "design créatif",
+      "comma2": " et de",
+      "practicalProblemSolving": "résolution pratique de problèmes",
+      "dot": "."
+    },
+    "description": "Bienvenue dans mes projets ! Vous trouverez ici une sélection de mes travaux, présentant mes compétences et ma créativité."
+  },
+  "myServices": {
+    "frontend": {
+      "name": "Développement Frontend",
+      "description": "Je conçois des interfaces guidées par la clarté et la réutilisabilité, en utilisant les principes de conception propre, des pratiques axées sur les tests et des modèles qui rendent les expériences utilisateur à la fois fiables et adaptables."
+    },
+    "backend": {
+      "name": "Développement Backend",
+      "description": "Je conçois des systèmes back-end avec des fondations SOLID, une logique métier testée et des modèles de conception éprouvés pour garantir évolutivité, résilience et maintenabilité à long terme."
+    },
+    "cloud": {
+      "name": "Développement Cloud AWS",
+      "description": "Je construis des solutions cloud avec des architectures propres, des pratiques d'automatisation prioritaires et une résilience testée, offrant des infrastructures qui évoluent de manière prévisible et sécurisée."
+    }
+  },
+  "myNetwork": {
+    "title": {
+      "success": "Le succès ne dépend pas seulement de",
+      "what": "CE QUE",
+      "youKnow": "vous savez, mais aussi de",
+      "who": "QUI",
+      "youKnow2": "vous connaissez."
+    },
+    "description": "Construire de solides relations professionnelles a toujours été un élément clé de mon parcours. Voici les réseaux et communautés où je collabore et évolue activement."
   }
 }
