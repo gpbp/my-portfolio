@@ -7,11 +7,13 @@ export type Lang = 'en' | 'fr' | 'vi';
 interface LangContextType {
   lang: Lang;
   switchLang: (lang: Lang) => void;
+  resetDefault: () => void;
 }
 
 const LangContext = createContext<LangContextType>({
   lang: 'en',
   switchLang: () => {},
+  resetDefault: () => {},
 });
 
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
@@ -30,8 +32,12 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
     router.refresh();
   };
 
+  const resetDefault = () => {
+    setLang('en');
+  }
+
   return (
-    <LangContext.Provider value={{ lang, switchLang }}>
+    <LangContext.Provider value={{ lang, switchLang, resetDefault }}>
       {children}
     </LangContext.Provider>
   );
