@@ -36,12 +36,21 @@ export default function Introduction(): JSX.Element {
             </p>
           </div>
           <div className="font-roboto-mono flex gap-x-4 items-start justify-items-start px-8 py-4 text-6xl font-bold w-full">
-            <Button className="text-tiny text-white flex flex-row flex-1/3" color="primary" radius="lg" size="sm" variant="solid">
-              {t.introduction.buttons.collaborate} <ArrowRight />
-            </Button>
-            <Button className="text-tiny text-white flex flex-row flex-1/3" color="primary" radius="lg" size="sm" variant="solid">
-              {t.introduction.buttons.downloadCV} <ArrowDownTray />
-            </Button>
+            <a
+              href="https://www.linkedin.com/in/trung-pham-798b04107"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-row flex-1/3"
+            >
+              <Button className="text-tiny text-white w-full" color="primary" radius="lg" size="sm" variant="solid">
+                {t.introduction.buttons.collaborate} <ArrowRight />
+              </Button>
+            </a>
+            <a href="/files/cv.pdf" download className="flex flex-row flex-1/3">
+              <Button className="text-tiny text-white w-full" color="primary" radius="lg" size="sm" variant="solid" aria-label="Download CV">
+                {t.introduction.buttons.downloadCV} <ArrowDownTray />
+              </Button>
+            </a>
             <div className="flex rounded-xl bg-primary font-roboto-mono text-tiny text-white h-full flex-1/3">
               <div
                 className={`cursor-pointer flex items-center justify-center flex-1/3 ${lang === 'en' ? 'bg-white/20' : ''}`}
@@ -75,7 +84,7 @@ export default function Introduction(): JSX.Element {
                 <div className="flex flex-col w-full items-center mb-4">
                     <img
                         className="rounded-full w-40 h-40 object-cover object-center flex"
-                        src="/img/profileImage.jpg"
+                        src="/img/profileImage.jpeg"
                         alt="Profile Image"
                     />
                 </div>

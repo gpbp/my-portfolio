@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import {Image} from "@heroui/image";
 import { Skeleton } from "@heroui/skeleton";
 import { useTranslations } from "@/app/i18n/useTranslations";
+import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
 
 type ITProfessional = {
     id: number;
@@ -18,13 +19,15 @@ export default function MyNetwork(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [professionalDisplay, setProfessionalDisplay] = useState<React.ReactNode[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const { lang } = useLang();
   const t = useTranslations();
   
     useEffect(() => {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const response = await fetch('/api/professionals');
+          const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
+          const response = await fetch(`/api/professionals?lang=${langParam}`);
           if (response.ok) {
             const data = await response.json();
             setProfessionals(data);
@@ -36,7 +39,7 @@ export default function MyNetwork(): JSX.Element {
         }
       };
       fetchData();
-    }, []);
+    }, [lang]);
   
     useEffect(() => {
       if (loading || professionals.length === 0) {
