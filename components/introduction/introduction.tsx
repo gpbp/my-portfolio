@@ -6,9 +6,11 @@ import {Button} from "@heroui/button";
 import { ArrowDownTray, ArrowRight } from "../icons";
 import BitcoinWidget from "./BitcoinWidget";
 import { Lang, useLang } from "@/app/context/LanguageContext";
+import { useTranslations } from "@/app/i18n/useTranslations";
 
 export default function Introduction(): JSX.Element {
-  const { switchLang } = useLang();
+  const { lang, switchLang } = useLang();
+  const t = useTranslations();
 
   const toggleLang = (language: Lang) => {
     switchLang(language);
@@ -21,24 +23,44 @@ export default function Introduction(): JSX.Element {
       >
         <div className="flex flex-col h-full w-full items-center justify-center">
           <div className="font-roboto-mono inline-block px-8 py-4 text-6xl font-bold">
-            <p>Building <span className="bg-gradient-to-r from-red-500 to-orange-500 inline-block text-transparent bg-clip-text">clean code</span> and <span className="bg-gradient-to-r from-red-500 to-orange-500 inline text-transparent bg-clip-text">beautiful</span> experiences.</p>
+            <p>
+              {t.introduction.title.buildingClean}{" "}
+              <span className="bg-gradient-to-r from-red-500 to-orange-500 inline-block text-transparent bg-clip-text">
+                {t.introduction.title.cleanCode}
+              </span>{" "}
+              {t.introduction.title.and}{" "}
+              <span className="bg-gradient-to-r from-red-500 to-orange-500 inline text-transparent bg-clip-text">
+                {t.introduction.title.beautiful}
+              </span>{" "}
+              {t.introduction.title.experiences}
+            </p>
           </div>
           <div className="font-roboto-mono flex gap-x-4 items-start justify-items-start px-8 py-4 text-6xl font-bold w-full">
             <Button className="text-tiny text-white flex flex-row flex-1/3" color="primary" radius="lg" size="sm" variant="solid">
-              Let's collaborate <ArrowRight />
+              {t.introduction.buttons.collaborate} <ArrowRight />
             </Button>
             <Button className="text-tiny text-white flex flex-row flex-1/3" color="primary" radius="lg" size="sm" variant="solid">
-              Download my CV <ArrowDownTray />
+              {t.introduction.buttons.downloadCV} <ArrowDownTray />
             </Button>
             <div className="flex rounded-xl bg-primary font-roboto-mono text-tiny text-white h-full flex-1/3">
               <div
-                className="cursor-pointer flex items-center justify-center flex-1/3 "
+                className={`cursor-pointer flex items-center justify-center flex-1/3 ${lang === 'en' ? 'bg-white/20' : ''}`}
                 onClick={() => toggleLang('en')}
               >
                 En
               </div>
-              <div className="cursor-pointer flex items-center justify-center flex-1/3 border-x border-white/20" onClick={() => toggleLang('fr')}>Fr</div>
-              <div className="cursor-pointer flex items-center justify-center flex-1/3" onClick={() => toggleLang('vi')}>Vi</div>
+              <div 
+                className={`cursor-pointer flex items-center justify-center flex-1/3 border-x border-white/20 ${lang === 'fr' ? 'bg-white/20' : ''}`}
+                onClick={() => toggleLang('fr')}
+              >
+                Fr
+              </div>
+              <div 
+                className={`cursor-pointer flex items-center justify-center flex-1/3 ${lang === 'vi' ? 'bg-white/20' : ''}`}
+                onClick={() => toggleLang('vi')}
+              >
+                Vi
+              </div>
           </div>
           </div>
         </div>
@@ -57,9 +79,9 @@ export default function Introduction(): JSX.Element {
                         alt="Profile Image"
                     />
                 </div>
-                <div className="text-white font-segoeUI font-bold text-xl">Pham Hai Trung</div>
-                <div className="font-segoeUI text-sm text-[#9198a1]">gpbp</div>
-                <div className="font-segoeUI text-sm text-white"> 💻 Full-Stack Developer | ☁️ Cloud Enthusiast | 🚀 Always learning </div>
+                <div className="text-white font-segoeUI font-bold text-xl">{t.introduction.profile.name}</div>
+                <div className="font-segoeUI text-sm text-[#9198a1]">{t.introduction.profile.username}</div>
+                <div className="font-segoeUI text-sm text-white">{t.introduction.profile.bio}</div>
             </CardBody>
         </Card>
       </div>

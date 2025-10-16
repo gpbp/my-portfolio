@@ -1,0 +1,20 @@
+{
+  "introduction": {
+    "title": {
+      "buildingClean": "Xây dựng",
+      "cleanCode": "code sạch",
+      "and": "và",
+      "beautiful": "đẹp",
+      "experiences": "trải nghiệm."
+    },
+    "buttons": {
+      "collaborate": "Hãy cùng hợp tác",
+      "downloadCV": "Tải CV của tôi"
+    },
+    "profile": {
+      "name": "Phạm Hải Trung",
+      "username": "gpbp",
+      "bio": "💻 Lập trình viên Full-Stack | ☁️ Đam mê Cloud | 🚀 Luôn học hỏi"
+    }
+  }
+}

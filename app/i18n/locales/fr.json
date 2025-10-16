@@ -1,0 +1,20 @@
+{
+  "introduction": {
+    "title": {
+      "buildingClean": "Construire",
+      "cleanCode": "du code propre",
+      "and": "et",
+      "beautiful": "de belles",
+      "experiences": "expériences."
+    },
+    "buttons": {
+      "collaborate": "Collaborons",
+      "downloadCV": "Télécharger mon CV"
+    },
+    "profile": {
+      "name": "Pham Hai Trung",
+      "username": "gpbp",
+      "bio": "💻 Développeur Full-Stack | ☁️ Passionné du Cloud | 🚀 Toujours en apprentissage"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "introduction": {
+    "title": {
+      "buildingClean": "Building",
+      "cleanCode": "clean code",
+      "and": "and",
+      "beautiful": "beautiful",
+      "experiences": "experiences."
+    },
+    "buttons": {
+      "collaborate": "Let's collaborate",
+      "downloadCV": "Download my CV"
+    },
+    "profile": {
+      "name": "Pham Hai Trung",
+      "username": "gpbp",
+      "bio": "💻 Full-Stack Developer | ☁️ Cloud Enthusiast | 🚀 Always learning"
+    }
+  }
+}
