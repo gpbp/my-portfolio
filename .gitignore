@@ -39,8 +39,5 @@ yarn.lock
 package-lock.json
 bun.lockb
 
-# github copilot's instruction
-.github
-
 # vscode's settings
 .vscode
