@@ -8,8 +8,8 @@ on:
       - ".github/workflows/frontend-deploy.yml"
 
 env:
-  AWS_REGION: us-east-1
-  ECR_REPOSITORY: my-app-frontend
+  AWS_REGION: eu-west-3
+  ECR_REPOSITORY: my-portfolio
 
 jobs:
   deploy:
