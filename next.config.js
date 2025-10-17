@@ -2,6 +2,7 @@
 const apiUrl = process.env.MY_PORTFOLIO_BACKEND_API_URL;
 
 const nextConfig = {
+  output: 'export',
     /* config options here */
   devIndicators: false,
   async rewrites() {
