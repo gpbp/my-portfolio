@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const apiUrl = process.env.MY_PORTFOLIO_BACKEND_API_URL || 'http://localhost:8080';
+const apiUrl = process.env.MY_PORTFOLIO_BACKEND_API_URL;
 
 const nextConfig = {
   output: 'standalone',
@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: `${apiUrl}/:path*`,
+        destination: `${apiUrl}/api/:path*`,
       },
     ]
   },
