@@ -27,7 +27,7 @@ export default function MyNetwork(): JSX.Element {
         setLoading(true);
         try {
           const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
-          const response = await fetch(`/api/professionals?lang=${langParam}`);
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/professionals?lang=${langParam}`);
           if (response.ok) {
             const data = await response.json();
             setProfessionals(data);

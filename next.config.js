@@ -2,16 +2,11 @@
 const apiUrl = process.env.MY_PORTFOLIO_BACKEND_API_URL || "http://localhost:8080";
 
 const nextConfig = {
-  output: 'standalone',
+  output: 'export',
     /* config options here */
   devIndicators: false,
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${apiUrl}/api/:path*`,
-      },
-    ]
+  images: {
+    unoptimized: true,
   },
   crossOrigin: 'anonymous',
 };
