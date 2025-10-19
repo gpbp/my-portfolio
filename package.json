@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:dev": "cross-env NODE_ENV=development && next build",
+    "build:prod": "cross-env NODE_ENV=production && next build",
     "start": "next start",
     "lint": "eslint --fix"
   },

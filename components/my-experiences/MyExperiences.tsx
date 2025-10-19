@@ -31,13 +31,14 @@ export default function MyExperiences(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLang();
   const t = useTranslations();
+  const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/experiences?lang=${langParam}`);
+        const response = await fetch(`${API_URL}/experiences?lang=${langParam}`);
         if (response.ok) {
           const data = await response.json();
           setExperiences(data);
