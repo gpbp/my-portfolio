@@ -7,6 +7,7 @@ import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
 import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
 import { useTranslations } from "@/app/i18n/useTranslations";
+import { API_URL, buildApiPath } from "@/lib/config";
 
 export type Experience = {
   id: number;
@@ -31,24 +32,23 @@ export default function MyExperiences(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLang();
   const t = useTranslations();
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
-        const response = await fetch(`${API_URL}/experiences?lang=${langParam}`);
-        if (response.ok) {
-          const data = await response.json();
-          setExperiences(data);
-        }
-      } catch (error) {
-        setError("Failed to fetch experiences");
-      } finally {
-        setLoading(false);
-      }
-    };
+        const response = await fetch(buildApiPath(`/experiences?lang=${langParam}`));
+              if (response.ok) {
+                const data = await response.json();
+                setExperiences(data);
+              }
+            } catch (error) {
+              setError("Failed to fetch experiences");
+            } finally {
+              setLoading(false);
+            }
+          };
     fetchData();
   }, [lang]);
 

@@ -5,6 +5,7 @@ import {Image} from "@heroui/image";
 import { Skeleton } from "@heroui/skeleton";
 import { useTranslations } from "@/app/i18n/useTranslations";
 import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
+import { API_URL, buildApiPath } from "@/lib/config";
 
 type ITProfessional = {
     id: number;
@@ -21,24 +22,23 @@ export default function MyNetwork(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLang();
   const t = useTranslations();
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
   
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
-        const response = await fetch(`${API_URL}/professionals?lang=${langParam}`);
-        if (response.ok) {
-          const data = await response.json();
-          setProfessionals(data);
-        }
-      } catch (error) {
-        setError("Failed to fetch professionals");
-      } finally {
-        setLoading(false);
-      }
-    };
+        const response = await fetch(buildApiPath(`/professionals?lang=${langParam}`));
+              if (response.ok) {
+                const data = await response.json();
+                setProfessionals(data);
+              }
+            } catch (error) {
+              setError("Failed to fetch professionals");
+            } finally {
+              setLoading(false);
+            }
+          };
     fetchData();
   }, [lang]);
   

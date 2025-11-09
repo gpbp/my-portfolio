@@ -7,6 +7,7 @@ import Carousel from "@/ui-components/carousel/Carousel";
 import { Skeleton } from "@heroui/skeleton";
 import { DEFAULT_LANG, useLang } from "@/app/context/LanguageContext";
 import { useTranslations } from "@/app/i18n/useTranslations";
+import { API_URL, buildApiPath } from "@/lib/config";
 
 type Project = {
     id: number;
@@ -30,23 +31,22 @@ export default function MyProjects(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLang();
   const t = useTranslations();
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const langParam = !!lang ? `${lang}` : DEFAULT_LANG;
-        const response = await fetch(`${API_URL}/projects?lang=${langParam}`);
-        if (response.ok) {
-          const data = await response.json();
-          setProjects(data);
+        const response = await fetch(buildApiPath(`/projects?lang=${langParam}`));
+          if (response.ok) {
+            const data = await response.json();
+            setProjects(data);
+          }
+        } catch (error) {
+          setError("Failed to fetch projects");
+        } finally {
+          setLoading(false);
         }
-      } catch (error) {
-        setError("Failed to fetch projects");
-      } finally {
-        setLoading(false);
-      }
     };
     fetchData();
   }, [lang]);

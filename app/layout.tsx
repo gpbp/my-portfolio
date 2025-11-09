@@ -6,7 +6,6 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans, helveticaBold, robotoMonoFont, segoeUI } from "@/config/fonts";
-import { LangProvider } from './context/LanguageContext';
 
 export const metadata: Metadata = {
   title: {
