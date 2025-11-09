@@ -19,7 +19,7 @@ frontend:
         - npm run build
   artifacts:
     # Amplify will publish the static files from the out/ folder produced by `next export`
-    baseDirectory: out
+    baseDirectory: .next
     files:
       - "**/*"
   cache:
