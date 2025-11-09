@@ -1,0 +1,28 @@
+# Amplify build spec for Next.js static export
+#
+# Notes:
+# - This build runs `npm run build` and `npm run export` to produce the static
+#   `out/` directory, which Amplify will deploy.
+# - Set the NEXT_PUBLIC_API_URL environment variable in the Amplify Console
+#   (App settings -> Build settings -> Environment variables) to point to
+#   your backend API (e.g. https://api.my-portfolio.example.com). Do NOT place
+#   secrets in here; only public client config values should use NEXT_PUBLIC_*.
+
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+        - npm run export
+  artifacts:
+    # Amplify will publish the static files from the out/ folder produced by `next export`
+    baseDirectory: out
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**
